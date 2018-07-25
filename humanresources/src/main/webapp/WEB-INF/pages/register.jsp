@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: grzha
   Date: 2018/7/25
-  Time: 11:21
+  Time: 20:01
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -17,11 +17,7 @@
 </head>
 <body>
 
-${sessionScope.recruitList[0].id}
-${sessionScope.recruitList[0].department}
-${sessionScope.recruitList[0].position}
-
-
+register
 
 </body>
 </html>

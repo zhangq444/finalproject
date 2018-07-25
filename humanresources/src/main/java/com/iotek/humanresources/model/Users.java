@@ -3,14 +3,14 @@ package com.iotek.humanresources.model;
 import java.io.Serializable;
 
 /**
- * Created by grzha on 2018/7/24.
+ * Created by grzha on 2018/7/25.
  */
-public class User implements Serializable {
+public class Users implements Serializable{
     private int id;
     private String name;
     private String password;
 
-    public User() {
+    public Users() {
     }
 
     public int getId() {
@@ -39,7 +39,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Users{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +

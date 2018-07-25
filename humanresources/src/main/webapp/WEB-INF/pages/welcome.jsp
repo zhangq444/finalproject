@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2018/7/24
-  Time: 11:37
+  User: grzha
+  Date: 2018/7/25
+  Time: 19:52
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -16,11 +16,18 @@
     <title></title>
 </head>
 <body>
-<form action="login" method="post">
-    账号：<input name="name"><br/>
-    密码：<input name="pass"><br/>
-    <input type="submit" value="登陆">
+
+<form action="loginAndRegister">
+    用户:<input type="text" name="name"><br>
+    密码:<input type="text" name="password"><br>
+    <input type="submit" value="登录" name="login">
+    <input type="submit" value="注册" name="register">
 </form>
+
+
+haha
+
+
 </body>
 </html>
 
