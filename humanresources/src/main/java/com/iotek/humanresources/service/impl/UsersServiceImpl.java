@@ -23,4 +23,14 @@ public class UsersServiceImpl implements UsersService {
     public List<Users> getUsers() {
         return usersMapper.getUsers();
     }
+
+    public Users getUsersByName(Users users) {
+        return usersMapper.getUsersByName(users);
+    }
+
+    public void addNewUser(Users users) {
+        usersMapper.addNewUser(users);
+    }
+
+
 }

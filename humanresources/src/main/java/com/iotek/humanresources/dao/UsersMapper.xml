@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.iotek.humanresources.dao.UsersMapper">
+    <insert id="addNewUser">
+        INSERT INTO T_USERS(U_ID, U_NAME, U_PASSWORD) VALUES (T_USERS_SEQ.nextval,#{name},#{password})
+    </insert>
 
     <select id="getUsersByNamePassword" resultMap="userMap">
         SELECT * from T_USERS WHERE U_NAME=#{name} and U_PASSWORD=#{password}
@@ -8,6 +11,10 @@
 
     <select id="getUsers" resultMap="userMap">
         SELECT * from T_USERS
+    </select>
+
+    <select id="getUsersByName" resultMap="userMap">
+        SELECT * from T_USERS WHERE U_NAME=#{name}
     </select>
 
     <resultMap id="userMap" type="users">

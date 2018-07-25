@@ -22,8 +22,13 @@
     密码:<input type="text" name="password"><br>
     <input type="submit" value="登录" name="login">
     <input type="submit" value="注册" name="register">
+    <input type="submit" value="直接登录" name="loginDirect">
 </form>
 
+${sessionScope.loginUser.name}<br>
+${sessionScope.loginUser.password}<br>
+
+${sessionScope.loginError}<br>
 
 haha
 

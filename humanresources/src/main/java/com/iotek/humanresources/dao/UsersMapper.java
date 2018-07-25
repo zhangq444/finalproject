@@ -14,4 +14,8 @@ public interface UsersMapper {
 
     List<Users> getUsers();
 
+    Users getUsersByName(Users users);
+
+    void addNewUser(Users users);
+
 }

@@ -14,4 +14,8 @@ public interface UsersService {
 
     List<Users> getUsers();
 
+    Users getUsersByName(Users users);
+
+    void addNewUser(Users users);
+
 }

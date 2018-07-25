@@ -17,7 +17,16 @@
 </head>
 <body>
 
-register
+register<br>
+
+<form action="register">
+    用户:<input type="text" name="name"><br>
+    密码:<input type="password" name="password"><br>
+    <input type="submit" value="提交">
+    <a href="returnWelcome"><input type="button" value="返回主页"></a>
+</form>
+
+${sessionScope.registerError}
 
 </body>
 </html>

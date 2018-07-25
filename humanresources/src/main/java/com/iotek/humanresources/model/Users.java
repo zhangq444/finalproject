@@ -13,6 +13,11 @@ public class Users implements Serializable{
     public Users() {
     }
 
+    public Users(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }
