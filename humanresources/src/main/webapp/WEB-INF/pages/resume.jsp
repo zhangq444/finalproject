@@ -29,6 +29,7 @@
             <td>简历ID</td>
             <td>简历名称</td>
             <td>简历详情</td>
+            <td>删除简历</td>
 
         </tr>
         <c:forEach var="i" begin="0" end="${fn:length(sessionScope.showResumeList)-1}">
@@ -36,8 +37,15 @@
                 <td>${sessionScope.showResumeList[i].id}</td>
                 <td>${sessionScope.showResumeList[i].resumename}</td>
                 <td>
-                    <form>
+                    <form action="resumeInfo">
+                        <input type="hidden" value="${sessionScope.showResumeList[i].id}" name="resumeInfoId">
                         <input type="submit" value="简历详情">
+                    </form>
+                </td>
+                <td>
+                    <form action="deleteResume">
+                        <input type="hidden" value="${sessionScope.showResumeList[i].id}" name="deleteResumeId">
+                        <input type="submit" value="删除简历">
                     </form>
                 </td>
             </tr>
@@ -46,7 +54,11 @@
     </table>
 </c:if>
 
+<form action="addResume">
+    <input type="submit" value="增加新简历">
+</form>
 
+<a href="returnWelcome"><input type="button" value="返回主页面"></a>
 
 </body>
 </html>

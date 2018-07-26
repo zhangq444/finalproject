@@ -15,7 +15,7 @@ public class Resume implements Serializable {
     private String education;
     private String workexperience;
     private String introduction;
-    private int uid;
+    private Users users;
     private String resumename;
 
     public Resume() {
@@ -93,12 +93,12 @@ public class Resume implements Serializable {
         this.introduction = introduction;
     }
 
-    public int getUid() {
-        return uid;
+    public Users getUsers() {
+        return users;
     }
 
-    public void setUid(int uid) {
-        this.uid = uid;
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
     public String getResumename() {
@@ -121,7 +121,7 @@ public class Resume implements Serializable {
                 ", education='" + education + '\'' +
                 ", workexperience='" + workexperience + '\'' +
                 ", introduction='" + introduction + '\'' +
-                ", uid=" + uid +
+                ", users=" + users +
                 ", resumename='" + resumename + '\'' +
                 '}';
     }

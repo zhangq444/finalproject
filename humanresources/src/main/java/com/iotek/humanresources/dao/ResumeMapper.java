@@ -14,4 +14,12 @@ public interface ResumeMapper {
 
     List<Resume> getResumeByUid(Users loginUser);
 
+    void addNewResume(Resume resume);
+
+    Resume getResumeById(Resume resume);
+
+    void modifyResumeById(Resume resume);
+
+    void deleteResumeById(Resume resume);
+
 }

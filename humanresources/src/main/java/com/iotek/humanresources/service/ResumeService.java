@@ -11,4 +11,12 @@ import java.util.List;
 public interface ResumeService {
     List<Resume> getResumeByUid(Users loginUser);
 
+    void addNewResume(Resume resume);
+
+    Resume getResumeById(Resume resume);
+
+    void modifyResumeById(Resume resume);
+
+    void deleteResumeById(Resume resume);
+
 }

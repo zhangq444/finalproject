@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.iotek.humanresources.dao.ResumeMapper">
+    <insert id="addNewResume">
+        INSERT INTO T_RESUME(RS_ID, RS_NAME, RS_GENDER, RS_PHONE, RS_EMAIL, RS_ADDRESS, RS_EDUCATION, RS_WORKEXPERIENCE, RS_INTRODUCTION, RS_UID, RS_RESUMENAME)
+        VALUES (T_RESUME_SEQ.nextval,#{name},#{gender},#{phone},#{email},#{address},#{education},#{workexperience},#{introduction},#{users.id},#{resumename})
+    </insert>
+
+    <update id="modifyResumeById">
+        UPDATE T_RESUME SET RS_NAME=#{name},RS_GENDER=#{gender},RS_PHONE=#{phone},RS_EMAIL=#{email},RS_ADDRESS=#{address},
+        RS_EDUCATION=#{education},RS_WORKEXPERIENCE=#{workexperience},RS_INTRODUCTION=#{introduction},RS_RESUMENAME=#{resumename}
+        where RS_ID=#{id}
+    </update>
+
+    <delete id="deleteResumeById">
+        DELETE FROM T_RESUME WHERE RS_ID=#{id}
+    </delete>
 
     <select id="getResumeByUid" resultMap="resumeMap">
         SELECT * from T_RESUME where RS_UID=#{id}
+    </select>
+
+    <select id="getResumeById" resultMap="resumeMap">
+        SELECT * from T_RESUME where RS_ID=#{id}
     </select>
 
     <resultMap id="resumeMap" type="resume">

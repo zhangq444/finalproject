@@ -20,4 +20,20 @@ public class ResumeServiceImpl implements ResumeService {
     public List<Resume> getResumeByUid(Users loginUser) {
         return resumeMapper.getResumeByUid(loginUser);
     }
+
+    public void addNewResume(Resume resume) {
+        resumeMapper.addNewResume(resume);
+    }
+
+    public Resume getResumeById(Resume resume) {
+        return resumeMapper.getResumeById(resume);
+    }
+
+    public void modifyResumeById(Resume resume) {
+        resumeMapper.modifyResumeById(resume);
+    }
+
+    public void deleteResumeById(Resume resume) {
+        resumeMapper.deleteResumeById(resume);
+    }
 }

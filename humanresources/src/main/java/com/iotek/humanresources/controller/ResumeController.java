@@ -34,5 +34,58 @@ public class ResumeController {
         return "resume";
     }
 
+    @RequestMapping("/addResume")
+    public String addResume(){
+        return "addResume";
+    }
+
+    @RequestMapping("/addResume1")
+    public String addResume1(Resume resume,HttpSession session){
+        Users loginUser= (Users) session.getAttribute("loginUser");
+        resume.setUsers(loginUser);
+        resumeService.addNewResume(resume);
+        List<Resume> resumeList=resumeService.getResumeByUid(loginUser);
+        session.setAttribute("showResumeList",resumeList);
+        return "resume";
+    }
+
+    @RequestMapping("/resumeInfo")
+    public String resumeInfo(int resumeInfoId,HttpSession session){
+        Resume resume=new Resume();
+        resume.setId(resumeInfoId);
+        Resume resumeTemp=resumeService.getResumeById(resume);
+
+        session.setAttribute("showResumeInfo",resumeTemp);
+        return "resumeInfo";
+    }
+
+    @RequestMapping("/modifyResume")
+    public String modifyResume(){
+        return "modifyResume";
+    }
+
+    @RequestMapping("/modifyResume1")
+    public String modifyResume1(Resume resume,HttpSession session){
+        Users loginUser= (Users) session.getAttribute("loginUser");
+        resume.setUsers(loginUser);
+        System.out.println(resume);
+        resumeService.modifyResumeById(resume);
+        List<Resume> resumeList=resumeService.getResumeByUid(loginUser);
+        session.setAttribute("showResumeList",resumeList);
+        return "resume";
+    }
+
+    @RequestMapping("/deleteResume")
+    public String deleteResume(int deleteResumeId,HttpSession session){
+        Resume resume=new Resume();
+        resume.setId(deleteResumeId);
+        resumeService.deleteResumeById(resume);
+
+        Users loginUser= (Users) session.getAttribute("loginUser");
+        List<Resume> resumeList=resumeService.getResumeByUid(loginUser);
+        session.setAttribute("showResumeList",resumeList);
+        return "resume";
+    }
+
 
 }
