@@ -30,7 +30,12 @@ ${sessionScope.loginUser.password}<br>
 
 ${sessionScope.loginError}<br>
 
-haha
+<a href="resume"><input type="button" value="简历管理"></a><br>
+${sessionScope.resumeError}<br>
+
+
+
+招聘信息
 
 
 </body>

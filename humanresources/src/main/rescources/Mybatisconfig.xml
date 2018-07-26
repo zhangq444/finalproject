@@ -12,6 +12,7 @@
     <typeAliases>
         <typeAlias type="com.iotek.humanresources.model.Users" alias="users"/>
         <typeAlias type="com.iotek.humanresources.model.Recruit" alias="recruit"></typeAlias>
+        <typeAlias type="com.iotek.humanresources.model.Resume" alias="resume"></typeAlias>
 
     </typeAliases>
 

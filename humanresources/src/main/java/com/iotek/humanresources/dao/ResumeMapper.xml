@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.humanresources.dao.ResumeMapper">
+
+    <select id="getResumeByUid" resultMap="resumeMap">
+        SELECT * from T_RESUME where RS_UID=#{id}
+    </select>
+
+    <resultMap id="resumeMap" type="resume">
+        <id property="id" column="RS_ID"></id>
+        <result property="name" column="RS_NAME"></result>
+        <result property="gender" column="RS_GENDER"></result>
+        <result property="phone" column="RS_PHONE"></result>
+        <result property="email" column="RS_EMAIL"></result>
+        <result property="address" column="RS_ADDRESS"></result>
+        <result property="education" column="RS_EDUCATION"></result>
+        <result property="workexperience" column="RS_WORKEXPERIENCE"></result>
+        <result property="introduction" column="RS_INTRODUCTION"></result>
+        <result property="resumename" column="RS_RESUMENAME"></result>
+    </resultMap>
+
+
+
+</mapper>

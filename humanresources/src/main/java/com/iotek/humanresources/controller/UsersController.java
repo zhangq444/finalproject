@@ -71,6 +71,9 @@ public class UsersController {
                     passwordTemp=cookies[i].getValue();
                 }
             }
+            if(nameTemp==null||passwordTemp==null){
+                return "welcome";
+            }
             Users usersTemp=new Users();
             usersTemp.setName(nameTemp);
             usersTemp.setPassword(passwordTemp);
