@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.humanresources.dao.RecruitmentMapper">
+
+    <insert id="addNewRecruitment">
+        INSERT INTO T_RECRUITMENT(RM_ID, RM_UID, RM_RSID, RM_READ, RM_INVITE, RM_RCID, RM_TIME)
+        VALUES (T_RECRUITMENT_SEQ.nextval,#{users.id},#{resume.id},#{read},#{invite},#{recruit.id},#{time})
+    </insert>
+
+    <select id="getAllRecruitment" resultMap="recruitmentMap">
+        SELECT * from T_RECRUITMENT rm,T_USERS u,T_RESUME rs,T_RECRUIT rc,T_DEPARTMENT dep,T_POSITION pos
+        WHERE rm.RM_UID=u.U_ID
+        AND rm.RM_RSID=rs.RS_ID
+        AND rm.RM_RCID=rc.RC_ID
+        AND rc.RC_DEPID=dep.DEP_ID
+        AND rc.RC_POSID=pos.POS_ID
+    </select>
+
+    <resultMap id="recruitmentMap" type="recruitment">
+        <id property="id" column="RM_ID"></id>
+        <result property="read" column="RM_READ"></result>
+        <result property="invite" column="RM_INVITE"></result>
+        <result property="time" column="RM_TIME"></result>
+        <association property="users" javaType="users">
+            <id property="id" column="U_ID"></id>
+            <result property="name" column="U_NAME"></result>
+            <result property="password" column="U_PASSWORD"></result>
+        </association>
+        <association property="resume" javaType="resume">
+            <id property="id" column="RS_ID"></id>
+            <result property="name" column="RS_NAME"></result>
+            <result property="gender" column="RS_GENDER"></result>
+            <result property="phone" column="RS_PHONE"></result>
+            <result property="email" column="RS_EMAIL"></result>
+            <result property="address" column="RS_ADDRESS"></result>
+            <result property="education" column="RS_EDUCATION"></result>
+            <result property="workexperience" column="RS_WORKEXPERIENCE"></result>
+            <result property="introduction" column="RS_INTRODUCTION"></result>
+            <result property="resumename" column="RS_RESUMENAME"></result>
+            <result property="idcard" column="RS_IDCARD"></result>
+            <result property="birthday" column="RS_BIRTHDAY"></result>
+            <result property="school" column="RS_SCHOOL"></result>
+            <result property="major" column="RS_MAJOR"></result>
+        </association>
+        <association property="recruit" javaType="recruit" resultMap="com.iotek.humanresources.dao.RecruitMapper.recruitMap">
+        </association>
+    </resultMap>
+
+
+</mapper>

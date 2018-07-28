@@ -23,6 +23,10 @@
     电话：<input type="text" name="phone"><br>
     e-mail：<input type="text" name="email"><br>
     地址：<input type="text" name="address"><br>
+    身份证：<input type="text" name="idcard"><br>
+    生日：<input type="date" name="birthdaydate"><br>
+    毕业学校：<input type="text" name="school"><br>
+    专业：<input type="text" name="major"><br>
     教育经历：<textarea name="education"></textarea><br>
     工作经历：<textarea name="workexperience"></textarea><br>
     自我介绍：<textarea name="introduction"></textarea><br>

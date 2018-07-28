@@ -25,6 +25,10 @@
         电话：<input type="text" name="phone" value="${sessionScope.showResumeInfo.phone}"><br>
         e-mail：<input type="text" name="email" value="${sessionScope.showResumeInfo.email}"><br>
         地址：<input type="text" name="address" value="${sessionScope.showResumeInfo.address}"><br>
+        身份证：<input type="text" name="idcard" value="${sessionScope.showResumeInfo.idcard}"><br>
+        生日：<input type="date" name="birthdaydate"><br>
+        毕业学校：<input type="text" name="school" value="${sessionScope.showResumeInfo.school}"><br>
+        专业：<input type="text" name="major" value="${sessionScope.showResumeInfo.major}"><br>
         教育经历：<textarea name="education">${sessionScope.showResumeInfo.education}</textarea><br>
         工作经历：<textarea name="workexperience">${sessionScope.showResumeInfo.workexperience}</textarea><br>
         自我介绍：<textarea name="introduction">${sessionScope.showResumeInfo.introduction}</textarea><br>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.humanresources.dao.ManagerMapper">
+
+    <select id="getManagerByNamePassword" resultMap="managerMap">
+        SELECT * FROM T_MANAGER m,T_EMPLOYEE e
+        WHERE m.M_EMPID=e.EMP_ID
+        AND m.M_NAME=#{name}
+        and m.M_PASSWORD=#{password}
+    </select>
+
+    <resultMap id="managerMap" type="manager">
+        <id property="id" column="M_ID"></id>
+        <result property="name" column="M_NAME"></result>
+        <result property="password" column="M_PASSWORD"></result>
+        <association property="employee" javaType="employee">
+            <id property="id" column="EMP_ID"></id>
+            <result property="name" column="EMP_NAME"></result>
+            <result property="gender" column="EMP_GENDER"></result>
+            <result property="phone" column="EMP_PHONE"></result>
+            <result property="email" column="EMP_EMAIL"></result>
+            <result property="address" column="EMP_ADDRESS"></result>
+            <result property="idcard" column="EMP_IDCARD"></result>
+            <result property="birthday" column="EMP_BIRTHDAY"></result>
+            <result property="school" column="EMP_SCHOOL"></result>
+            <result property="major" column="EMP_MAJOR"></result>
+            <result property="education" column="EMP_EDUCATION"></result>
+            <result property="hiredate" column="EMP_HIREDATE"></result>
+            <result property="state" column="EMP_STATE"></result>
+        </association>
+    </resultMap>
+
+</mapper>

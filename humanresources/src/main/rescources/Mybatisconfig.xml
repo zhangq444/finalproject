@@ -13,6 +13,11 @@
         <typeAlias type="com.iotek.humanresources.model.Users" alias="users"/>
         <typeAlias type="com.iotek.humanresources.model.Recruit" alias="recruit"></typeAlias>
         <typeAlias type="com.iotek.humanresources.model.Resume" alias="resume"></typeAlias>
+        <typeAlias type="com.iotek.humanresources.model.Department" alias="department"></typeAlias>
+        <typeAlias type="com.iotek.humanresources.model.Position" alias="position"></typeAlias>
+        <typeAlias type="com.iotek.humanresources.model.Manager" alias="manager"></typeAlias>
+        <typeAlias type="com.iotek.humanresources.model.Employee" alias="employee"></typeAlias>
+        <typeAlias type="com.iotek.humanresources.model.Recruitment" alias="recruitment"></typeAlias>
 
     </typeAliases>
 

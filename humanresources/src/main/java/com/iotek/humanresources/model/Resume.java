@@ -1,6 +1,7 @@
 package com.iotek.humanresources.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by grzha on 2018/7/26.
@@ -17,8 +18,16 @@ public class Resume implements Serializable {
     private String introduction;
     private Users users;
     private String resumename;
+    private String idcard;
+    private Date birthday;
+    private String school;
+    private String major;
 
     public Resume() {
+    }
+
+    public Resume(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -109,6 +118,38 @@ public class Resume implements Serializable {
         this.resumename = resumename;
     }
 
+    public String getIdcard() {
+        return idcard;
+    }
+
+    public void setIdcard(String idcard) {
+        this.idcard = idcard;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
     @Override
     public String toString() {
         return "Resume{" +
@@ -123,6 +164,10 @@ public class Resume implements Serializable {
                 ", introduction='" + introduction + '\'' +
                 ", users=" + users +
                 ", resumename='" + resumename + '\'' +
+                ", idcard='" + idcard + '\'' +
+                ", birthday=" + birthday +
+                ", school='" + school + '\'' +
+                ", major='" + major + '\'' +
                 '}';
     }
 }

@@ -8,15 +8,20 @@ import java.util.Date;
  */
 public class Recruit implements Serializable {
     private int id;
-    private String department;
-    private String position;
+    private Department department;
+    private Position position;
     private int number;
     private int salary;
     private Date time;
     private String description;
     private int state;
+    private String requirement;
 
     public Recruit() {
+    }
+
+    public Recruit(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -27,19 +32,19 @@ public class Recruit implements Serializable {
         this.id = id;
     }
 
-    public String getDepartment() {
+    public Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(String department) {
+    public void setDepartment(Department department) {
         this.department = department;
     }
 
-    public String getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 
@@ -83,17 +88,26 @@ public class Recruit implements Serializable {
         this.state = state;
     }
 
+    public String getRequirement() {
+        return requirement;
+    }
+
+    public void setRequirement(String requirement) {
+        this.requirement = requirement;
+    }
+
     @Override
     public String toString() {
         return "Recruit{" +
                 "id=" + id +
-                ", department='" + department + '\'' +
-                ", position='" + position + '\'' +
+                ", department=" + department +
+                ", position=" + position +
                 ", number=" + number +
                 ", salary=" + salary +
                 ", time=" + time +
                 ", description='" + description + '\'' +
                 ", state=" + state +
+                ", requirement='" + requirement + '\'' +
                 '}';
     }
 }

@@ -17,4 +17,11 @@ public class RecruitServiceImpl implements RecruitService {
     private RecruitMapper recruitMapper;
 
 
+    public List<Recruit> getAllRecruitByState(Recruit recruit) {
+        return recruitMapper.getAllRecruitByState(recruit);
+    }
+
+    public Recruit getRecruitById(Recruit temp) {
+        return recruitMapper.getRecruitById(temp);
+    }
 }

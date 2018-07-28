@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,9 +41,10 @@ public class ResumeController {
     }
 
     @RequestMapping("/addResume1")
-    public String addResume1(Resume resume,HttpSession session){
+    public String addResume1(Resume resume,String birthdaydate,HttpSession session){
         Users loginUser= (Users) session.getAttribute("loginUser");
         resume.setUsers(loginUser);
+        resume.setBirthday(UtilController.StringToDate(birthdaydate));
         resumeService.addNewResume(resume);
         List<Resume> resumeList=resumeService.getResumeByUid(loginUser);
         session.setAttribute("showResumeList",resumeList);
@@ -55,6 +57,7 @@ public class ResumeController {
         resume.setId(resumeInfoId);
         Resume resumeTemp=resumeService.getResumeById(resume);
 
+        session.setAttribute("showResumeInfoBirthday",UtilController.DateToString(resumeTemp.getBirthday()));
         session.setAttribute("showResumeInfo",resumeTemp);
         return "resumeInfo";
     }
@@ -65,10 +68,11 @@ public class ResumeController {
     }
 
     @RequestMapping("/modifyResume1")
-    public String modifyResume1(Resume resume,HttpSession session){
+    public String modifyResume1(Resume resume,String birthdaydate,HttpSession session){
         Users loginUser= (Users) session.getAttribute("loginUser");
         resume.setUsers(loginUser);
-        System.out.println(resume);
+        resume.setBirthday(UtilController.StringToDate(birthdaydate));
+
         resumeService.modifyResumeById(resume);
         List<Resume> resumeList=resumeService.getResumeByUid(loginUser);
         session.setAttribute("showResumeList",resumeList);
@@ -86,6 +90,9 @@ public class ResumeController {
         session.setAttribute("showResumeList",resumeList);
         return "resume";
     }
+
+
+
 
 
 }

@@ -11,5 +11,8 @@ import java.util.List;
 @Repository
 public interface RecruitMapper {
 
+    List<Recruit> getAllRecruitByState(Recruit recruit);
+
+    Recruit getRecruitById(Recruit temp);
 
 }

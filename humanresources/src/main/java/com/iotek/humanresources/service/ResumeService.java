@@ -19,4 +19,6 @@ public interface ResumeService {
 
     void deleteResumeById(Resume resume);
 
+
+
 }

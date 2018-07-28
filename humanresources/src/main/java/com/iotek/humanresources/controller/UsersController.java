@@ -26,7 +26,11 @@ public class UsersController {
 
     @RequestMapping("/")
     public String showUser(HttpSession session){
+        Recruit recruit=new Recruit();
+        recruit.setState(1);//1代表已经发布的招聘信息
+        List<Recruit> recruitList=recruitService.getAllRecruitByState(recruit);
 
+        session.setAttribute("recruitList",recruitList);
         return "welcome";
 
     }
@@ -72,6 +76,7 @@ public class UsersController {
                 }
             }
             if(nameTemp==null||passwordTemp==null){
+                session.setAttribute("loginError","Cookies过期");
                 return "welcome";
             }
             Users usersTemp=new Users();

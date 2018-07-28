@@ -9,5 +9,8 @@ import java.util.List;
  */
 public interface RecruitService {
 
-    
+    List<Recruit> getAllRecruitByState(Recruit recruit);
+
+    Recruit getRecruitById(Recruit temp);
+
 }

@@ -1,3 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fnn" uri="/elFunction" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: grzha
@@ -36,6 +40,42 @@ ${sessionScope.resumeError}<br>
 
 
 招聘信息
+
+<table>
+    <tr>
+        <th>招聘部门</th>
+        <th>招聘职位</th>
+        <th>招聘数量</th>
+        <th>基本薪资</th>
+        <th>招聘时间</th>
+        <th>招聘详情</th>
+        <th>投递选择</th>
+    </tr>
+    <c:forEach var="i" begin="0" end="${fn:length(sessionScope.recruitList)-1}">
+        <tr>
+            <td>${sessionScope.recruitList[i].department.name}</td>
+            <td>${sessionScope.recruitList[i].position.name}</td>
+            <td>${sessionScope.recruitList[i].number}</td>
+            <td>${sessionScope.recruitList[i].salary}</td>
+            <td>${fnn:DateToString(sessionScope.recruitList[i].time)}</td>
+            <%--<td>${sessionScope.recruitList[i].time}</td>--%>
+            <td>
+                <form action="recruitInfo">
+                    <input type="hidden" name="recruitInfoId" value="${sessionScope.recruitList[i].id}">
+                    <input type="submit" value="查看详情">
+                </form>
+            </td>
+            <td>
+                <input type="checkbox" id="sendResume" name="sendResume" value="${sessionScope.recruitList[i].id}">
+            </td>
+
+        </tr>
+
+    </c:forEach>
+</table>
+
+
+
 
 
 </body>

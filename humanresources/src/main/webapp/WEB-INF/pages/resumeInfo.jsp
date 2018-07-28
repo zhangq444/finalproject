@@ -23,6 +23,10 @@
 电话：${sessionScope.showResumeInfo.phone}<br>
 e-mail：${sessionScope.showResumeInfo.email}<br>
 地址：${sessionScope.showResumeInfo.address}<br>
+身份证：${sessionScope.showResumeInfo.idcard}<br>
+生日：${sessionScope.showResumeInfoBirthday}<br>
+毕业学校：${sessionScope.showResumeInfo.school}<br>
+专业：${sessionScope.showResumeInfo.major}<br>
 教育经历：${sessionScope.showResumeInfo.education}<br>
 工作经历：${sessionScope.showResumeInfo.workexperience}<br>
 自我介绍：${sessionScope.showResumeInfo.introduction}<br>

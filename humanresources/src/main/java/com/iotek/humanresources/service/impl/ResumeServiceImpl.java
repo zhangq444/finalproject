@@ -36,4 +36,7 @@ public class ResumeServiceImpl implements ResumeService {
     public void deleteResumeById(Resume resume) {
         resumeMapper.deleteResumeById(resume);
     }
+
+
+
 }
