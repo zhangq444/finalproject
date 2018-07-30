@@ -14,4 +14,10 @@ public interface RecruitmentMapper {
 
     List<Recruitment> getAllRecruitment();
 
+    void modifyRecruitmentReadById(Recruitment recruitment);
+
+    Recruitment getRecruitmentById(Recruitment temp);
+
+    void modifyRecruitmentInviteById(Recruitment recruitment);
+
 }

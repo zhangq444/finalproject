@@ -18,6 +18,7 @@
         <typeAlias type="com.iotek.humanresources.model.Manager" alias="manager"></typeAlias>
         <typeAlias type="com.iotek.humanresources.model.Employee" alias="employee"></typeAlias>
         <typeAlias type="com.iotek.humanresources.model.Recruitment" alias="recruitment"></typeAlias>
+        <typeAlias type="com.iotek.humanresources.model.Interview" alias="interview"></typeAlias>
 
     </typeAliases>
 

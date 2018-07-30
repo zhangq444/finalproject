@@ -7,6 +7,14 @@
         VALUES (T_RECRUITMENT_SEQ.nextval,#{users.id},#{resume.id},#{read},#{invite},#{recruit.id},#{time})
     </insert>
 
+    <update id="modifyRecruitmentReadById">
+        UPDATE T_RECRUITMENT SET RM_READ=#{read} where RM_ID=#{id}
+    </update>
+
+    <update id="modifyRecruitmentInviteById">
+        UPDATE T_RECRUITMENT SET RM_INVITE=#{invite} where RM_ID=#{id}
+    </update>
+
     <select id="getAllRecruitment" resultMap="recruitmentMap">
         SELECT * from T_RECRUITMENT rm,T_USERS u,T_RESUME rs,T_RECRUIT rc,T_DEPARTMENT dep,T_POSITION pos
         WHERE rm.RM_UID=u.U_ID
@@ -14,6 +22,16 @@
         AND rm.RM_RCID=rc.RC_ID
         AND rc.RC_DEPID=dep.DEP_ID
         AND rc.RC_POSID=pos.POS_ID
+    </select>
+
+    <select id="getRecruitmentById" resultMap="recruitmentMap">
+        SELECT * from T_RECRUITMENT rm,T_USERS u,T_RESUME rs,T_RECRUIT rc,T_DEPARTMENT dep,T_POSITION pos
+        WHERE rm.RM_UID=u.U_ID
+        AND rm.RM_RSID=rs.RS_ID
+        AND rm.RM_RCID=rc.RC_ID
+        AND rc.RC_DEPID=dep.DEP_ID
+        AND rc.RC_POSID=pos.POS_ID
+        AND rm.RM_ID=#{id}
     </select>
 
     <resultMap id="recruitmentMap" type="recruitment">

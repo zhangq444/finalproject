@@ -54,8 +54,8 @@
                     </c:if>
                 </td>
                 <td>
-                    <form>
-                        <input type="hidden" value="${sessionScope.showRecruitmentList[i].id}">
+                    <form action="showRecruitmentInfo">
+                        <input type="hidden" value="${sessionScope.showRecruitmentList[i].id}" name="showRecruitmentInfoId">
                         <input type="submit" value="查看详情">
                     </form>
                 </td>

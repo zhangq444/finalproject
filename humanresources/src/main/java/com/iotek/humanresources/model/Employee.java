@@ -22,8 +22,14 @@ public class Employee implements Serializable {
     private Position position;
     private Date hiredate;
     private int state;
+    private String uname;
+    private String upassword;
 
     public Employee() {
+    }
+
+    public Employee(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -146,6 +152,22 @@ public class Employee implements Serializable {
         this.state = state;
     }
 
+    public String getUname() {
+        return uname;
+    }
+
+    public void setUname(String uname) {
+        this.uname = uname;
+    }
+
+    public String getUpassword() {
+        return upassword;
+    }
+
+    public void setUpassword(String upassword) {
+        this.upassword = upassword;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -164,6 +186,8 @@ public class Employee implements Serializable {
                 ", position=" + position +
                 ", hiredate=" + hiredate +
                 ", state=" + state +
+                ", uname='" + uname + '\'' +
+                ", upassword='" + upassword + '\'' +
                 '}';
     }
 }

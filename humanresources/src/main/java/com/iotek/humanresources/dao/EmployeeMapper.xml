@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.humanresources.dao.EmployeeMapper">
+    <insert id="addNewEmployee">
+        INSERT INTO T_EMPLOYEE(EMP_ID, EMP_NAME, EMP_GENDER, EMP_PHONE, EMP_EMAIL, EMP_ADDRESS, EMP_IDCARD, EMP_BIRTHDAY,
+        EMP_SCHOOL, EMP_MAJOR, EMP_EDUCATION, EMP_DEPID, EMP_POSID, EMP_HIREDATE, EMP_STATE, EMP_UNAME, EMP_UPASSWORD)
+        VALUES (T_EMPLOYEE_SEQ.nextval,#{name},#{gender},#{phone},#{email},#{address},#{idcard},#{birthday},
+        #{school},#{major},#{education},#{department.id},#{position.id},#{hiredate},#{state},#{uname},#{upassword})
+    </insert>
+
+    <select id="getAllEmployee" resultMap="employeeMap">
+        SELECT * FROM T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
+        WHERE emp.EMP_DEPID=dep.DEP_ID
+        AND emp.EMP_POSID=pos.POS_ID
+    </select>
+
+    <select id="getEmployeeById" resultMap="employeeMap">
+        SELECT * FROM T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
+        WHERE emp.EMP_DEPID=dep.DEP_ID
+        AND emp.EMP_POSID=pos.POS_ID
+        AND emp.EMP_ID=#{id}
+    </select>
+
+    <select id="getEmployeeByName" resultMap="employeeMap">
+        SELECT * FROM T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
+        WHERE emp.EMP_DEPID=dep.DEP_ID
+        AND emp.EMP_POSID=pos.POS_ID
+        AND emp.EMP_UNAME=#{uname}
+    </select>
+
+    <resultMap id="employeeMap" type="employee">
+        <id property="id" column="EMP_ID"></id>
+        <result property="name" column="EMP_NAME"></result>
+        <result property="gender" column="EMP_GENDER"></result>
+        <result property="phone" column="EMP_PHONE"></result>
+        <result property="email" column="EMP_EMAIL"></result>
+        <result property="address" column="EMP_ADDRESS"></result>
+        <result property="idcard" column="EMP_IDCARD"></result>
+        <result property="birthday" column="EMP_BIRTHDAY"></result>
+        <result property="school" column="EMP_SCHOOL"></result>
+        <result property="major" column="EMP_MAJOR"></result>
+        <result property="education" column="EMP_EDUCATION"></result>
+        <result property="hiredate" column="EMP_HIREDATE"></result>
+        <result property="state" column="EMP_STATE"></result>
+        <association property="department" javaType="department" >
+            <id property="id" column="DEP_ID"></id>
+            <result property="name" column="DEP_NAME"></result>
+            <result property="time" column="DEP_TIME"></result>
+        </association>
+        <association property="position" javaType="position">
+            <id property="id" column="POS_ID"></id>
+            <result property="name" column="POS_NAME"></result>
+            <result property="salary" column="POS_SALARY"></result>
+        </association>
+    </resultMap>
+
+</mapper>

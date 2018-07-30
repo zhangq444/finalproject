@@ -36,7 +36,8 @@ ${sessionScope.loginError}<br>
 
 <a href="resume"><input type="button" value="简历管理"></a><br>
 ${sessionScope.resumeError}<br>
-
+<a href="checkInterview"><input type="button" value="查看面试邀请"></a><br>
+<br>
 
 
 招聘信息

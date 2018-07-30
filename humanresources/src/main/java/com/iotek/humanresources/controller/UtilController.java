@@ -29,11 +29,37 @@ public class UtilController {
         return null;
     }
 
+    public static Date StringToDate1(String dateStr){
+        String[] strArr=dateStr.split("T");
+        String newDateStr=strArr[0]+" "+strArr[1];
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        try {
+            Date date=simpleDateFormat.parse(newDateStr);
+            return date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static String DateToString(Date date){
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日");
         String date1=simpleDateFormat.format(date);
         return date1;
     }
+
+    public static String DateToString1(Date date){
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日 hh点mm分");
+        String date1=simpleDateFormat.format(date);
+        return date1;
+    }
+
+    @RequestMapping("/returnManagerWelcome")
+    public String returnManagerWelcome(){
+        return "managerWelcome";
+    }
+
+
 
 
 }

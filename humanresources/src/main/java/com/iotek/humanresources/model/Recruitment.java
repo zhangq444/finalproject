@@ -18,6 +18,10 @@ public class Recruitment implements Serializable {
     public Recruitment() {
     }
 
+    public Recruitment(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

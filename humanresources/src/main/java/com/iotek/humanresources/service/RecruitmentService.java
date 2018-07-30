@@ -12,4 +12,10 @@ public interface RecruitmentService {
 
     List<Recruitment> getAllRecruitment();
 
+    void modifyRecruitmentReadById(Recruitment recruitment);
+
+    Recruitment getRecruitmentById(Recruitment temp);
+
+    void modifyRecruitmentInviteById(Recruitment recruitment);
+
 }

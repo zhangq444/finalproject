@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.humanresources.dao.InterviewMapper">
+    <insert id="addNewInterview">
+        INSERT INTO T_INTERVIEW(I_ID, I_RCID, I_RSID, I_TIME, I_ADDRESS, I_EMPID, I_STATE, I_UID)
+        VALUES (T_INTERVIEW_SEQ.nextval,#{recruit.id},#{resume.id},#{time},#{address},#{employee.id},#{state},#{users.id})
+    </insert>
+
+    <update id="modifyInterviewStateById">
+        UPDATE T_INTERVIEW SET I_STATE=#{state} where I_ID=#{id}
+    </update>
+
+    <select id="getInterviewByUid" resultMap="interviewMap">
+        SELECT * FROM T_INTERVIEW i,T_RECRUIT rc,T_RESUME rs,T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
+        WHERE i.I_RCID=rc.RC_ID
+        AND i.I_RSID=rs.RS_ID
+        AND i.I_EMPID=emp.EMP_ID
+        AND rc.RC_DEPID=dep.DEP_ID
+        AND rc.RC_POSID=pos.POS_ID
+        AND i.I_UID=#{id}
+    </select>
+
+    <select id="getInterviewByState" resultMap="interviewMap">
+        SELECT * FROM T_INTERVIEW i,T_RECRUIT rc,T_RESUME rs,T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
+        WHERE i.I_RCID=rc.RC_ID
+        AND i.I_RSID=rs.RS_ID
+        AND i.I_EMPID=emp.EMP_ID
+        AND rc.RC_DEPID=dep.DEP_ID
+        AND rc.RC_POSID=pos.POS_ID
+        AND i.I_STATE=#{state}
+    </select>
+
+    <resultMap id="interviewMap" type="interview">
+        <id property="id" column="I_ID"></id>
+        <result property="time" column="I_TIME"></result>
+        <result property="address" column="I_ADDRESS"></result>
+        <result property="state" column="I_STATE"></result>
+        <association property="recruit" javaType="recruit" resultMap="com.iotek.humanresources.dao.RecruitMapper.recruitMap"></association>
+        <association property="resume" javaType="resume" resultMap="com.iotek.humanresources.dao.ResumeMapper.resumeMap"></association>
+        <association property="employee" javaType="employee" resultMap="com.iotek.humanresources.dao.EmployeeMapper.employeeMap"></association>
+    </resultMap>
+
+
+</mapper>

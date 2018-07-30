@@ -13,8 +13,14 @@ public class Interview implements Serializable {
     private Date time;
     private String address;
     private Employee employee;
+    private int state;
+    private Users users;
 
     public Interview() {
+    }
+
+    public Interview(int state) {
+        this.state = state;
     }
 
     public int getId() {
@@ -65,6 +71,22 @@ public class Interview implements Serializable {
         this.employee = employee;
     }
 
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
     @Override
     public String toString() {
         return "Interview{" +
@@ -74,6 +96,8 @@ public class Interview implements Serializable {
                 ", time=" + time +
                 ", address='" + address + '\'' +
                 ", employee=" + employee +
+                ", state=" + state +
+                ", users=" + users +
                 '}';
     }
 }

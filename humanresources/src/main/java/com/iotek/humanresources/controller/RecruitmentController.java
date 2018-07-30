@@ -57,6 +57,22 @@ public class RecruitmentController {
         return "showRecruitment";
     }
 
+    @RequestMapping("/showRecruitmentInfo")
+    public String showRecruitmentInfo(int showRecruitmentInfoId,HttpSession session){
+        Recruitment temp=new Recruitment(showRecruitmentInfoId);
+        Recruitment recruitment=recruitmentService.getRecruitmentById(temp);
+
+        int read=1;
+        recruitment.setRead(read);
+        recruitmentService.modifyRecruitmentReadById(recruitment);
+
+        session.setAttribute("showRecruitmentInfo",recruitment);
+        return "showRecruitmentInfo";
+
+    }
+
+
+
 
 
 }
