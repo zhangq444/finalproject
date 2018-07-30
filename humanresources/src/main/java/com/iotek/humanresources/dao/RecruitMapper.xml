@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.iotek.humanresources.dao.RecruitMapper">
+    <insert id="addNewRecruit">
+        INSERT INTO T_RECRUIT(RC_ID, RC_DEPID, RC_POSID, RC_NUMBER, RC_SALARY, RC_TIME, RC_DESCRIPTION, RC_STATE, RC_REQUIREMENT)
+        VALUES (T_RECRUIT_SEQ.nextval,#{department.id},#{position.id},#{number},#{salary},#{time},#{description},#{state},#{requirement})
+    </insert>
+
+    <update id="modifyRecruitById">
+        UPDATE T_RECRUIT SET RC_NUMBER=#{number},RC_DESCRIPTION=#{description},RC_REQUIREMENT=#{requirement} where RC_ID=#{id}
+    </update>
+
+    <update id="modifyRecruitStateById">
+        UPDATE T_RECRUIT SET RC_STATE=#{state} where RC_ID=#{id}
+    </update>
+
+    <delete id="deleteRecruitById">
+        DELETE FROM T_RECRUIT WHERE RC_ID=#{id}
+    </delete>
 
     <select id="getAllRecruitByState" resultMap="recruitMap">
         SELECT *
@@ -16,6 +32,25 @@
         where rc.RC_DEPID=dep.DEP_ID
         AND rc.RC_POSID=pos.POS_ID
         AND rc.RC_ID=#{id}
+    </select>
+
+    <select id="getAllRecruit" resultMap="recruitMap">
+        SELECT *
+        FROM T_RECRUIT rc,T_DEPARTMENT dep,T_POSITION pos
+        where rc.RC_DEPID=dep.DEP_ID
+        AND rc.RC_POSID=pos.POS_ID
+    </select>
+
+    <select id="getRecruitCurrentPage" resultMap="recruitMap">
+        SELECT * FROM (
+        SELECT ROWNUM rn,rc.*,dep.*,pos.*
+        FROM T_RECRUIT rc,T_DEPARTMENT dep,T_POSITION pos
+        where rc.RC_DEPID=dep.DEP_ID
+        AND rc.RC_POSID=pos.POS_ID
+        AND rc.RC_STATE=#{0}
+        ) x
+        where x.rn between #{1} and #{2}
+
     </select>
 
     <resultMap id="recruitMap" type="recruit">

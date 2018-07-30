@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.humanresources.dao.PositionMapper">
+
+    <select id="getPositionById" resultMap="positionMap">
+        SELECT * FROM T_POSITION WHERE POS_ID=#{id}
+    </select>
+
+    <resultMap id="positionMap" type="position">
+        <id property="id" column="POS_ID"></id>
+        <result property="name" column="POS_NAME"></result>
+        <result property="salary" column="POS_SALARY"></result>
+    </resultMap>
+</mapper>

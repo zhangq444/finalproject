@@ -6,6 +6,7 @@ import com.iotek.humanresources.service.RecruitService;
 import com.iotek.humanresources.service.UsersService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
@@ -25,12 +26,22 @@ public class UsersController {
     private RecruitService recruitService;
 
     @RequestMapping("/")
-    public String showUser(HttpSession session){
+    public String showUser(@RequestParam(value = "currentPage1",defaultValue = "1")int currentPage, HttpSession session){
         Recruit recruit=new Recruit();
-        recruit.setState(1);//1代表已经发布的招聘信息
+        int state=1;
+        recruit.setState(state);//1代表已经发布的招聘信息
         List<Recruit> recruitList=recruitService.getAllRecruitByState(recruit);
 
-        session.setAttribute("recruitList",recruitList);
+        int totalNum=recruitList.size();
+        int pageSize=1;
+        int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+        int start=(currentPage-1)*pageSize+1;
+        int end=pageSize*currentPage;
+
+        List<Recruit> recruitListCurrentPage=recruitService.getRecruitCurrentPage(state,start,end);
+
+        session.setAttribute("recruitList",recruitListCurrentPage);
+        session.setAttribute("totalPagesRecrultList",totalPages);
         return "welcome";
 
     }

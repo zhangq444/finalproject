@@ -11,7 +11,7 @@ public class Recruit implements Serializable {
     private Department department;
     private Position position;
     private int number;
-    private int salary;
+    private double salary;
     private Date time;
     private String description;
     private int state;
@@ -56,11 +56,11 @@ public class Recruit implements Serializable {
         this.number = number;
     }
 
-    public int getSalary() {
+    public double getSalary() {
         return salary;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 

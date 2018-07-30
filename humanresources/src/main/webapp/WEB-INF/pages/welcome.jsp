@@ -73,11 +73,12 @@ ${sessionScope.resumeError}<br>
         </tr>
 
     </c:forEach>
-</table>
+</table><br>
+<br>
 
-
-
-
+<c:forEach var="i" begin="1" end="${sessionScope.totalPagesRecrultList}">
+    <a href="?currentPage1=${i}">${i}</a>
+</c:forEach>
 
 </body>
 </html>

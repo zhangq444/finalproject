@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.humanresources.dao.DepartmentMapper">
+    <insert id="addNewDepartment">
+        INSERT INTO T_DEPARTMENT(DEP_ID, DEP_NAME, DEP_TIME)
+        VALUES (T_DEPARTMENT_SEQ.nextval,#{name},#{time})
+    </insert>
+
+    <update id="modifyDepartmentNameById">
+        UPDATE T_DEPARTMENT SET DEP_NAME=#{name} where DEP_ID=#{id}
+    </update>
+
+    <delete id="deleteDepartmentById">
+        DELETE FROM T_DEPARTMENT WHERE DEP_ID=#{id}
+    </delete>
+
+    <select id="getAllDepartment" resultMap="departmentMap">
+        SELECT * FROM T_DEPARTMENT dep LEFT JOIN T_POSITION pos ON dep.DEP_ID=pos.POS_DEPID
+    </select>
+
+    <select id="getDepartment" resultMap="departmentMap">
+        SELECT * FROM T_DEPARTMENT dep LEFT JOIN T_POSITION pos
+        ON dep.DEP_ID=pos.POS_DEPID
+        WHERE dep.DEP_ID=#{id}
+    </select>
+
+    <select id="getDepartmentByName" resultMap="departmentMap">
+        SELECT * FROM T_DEPARTMENT dep LEFT JOIN T_POSITION pos ON dep.DEP_ID=pos.POS_DEPID
+        WHERE dep.DEP_NAME=#{name}
+    </select>
+
+    <resultMap id="departmentMap" type="department">
+        <id property="id" column="DEP_ID"></id>
+        <result property="name" column="DEP_NAME"></result>
+        <result property="time" column="DEP_TIME"></result>
+        <collection property="positionList" ofType="position">
+            <id property="id" column="POS_ID"></id>
+            <result property="name" column="POS_NAME"></result>
+            <result property="salary" column="POS_SALARY"></result>
+        </collection>
+    </resultMap>
+
+
+</mapper>

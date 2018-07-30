@@ -24,4 +24,30 @@ public class RecruitServiceImpl implements RecruitService {
     public Recruit getRecruitById(Recruit temp) {
         return recruitMapper.getRecruitById(temp);
     }
+
+    public List<Recruit> getAllRecruit() {
+        return recruitMapper.getAllRecruit();
+    }
+
+    public void addNewRecruit(Recruit recruit) {
+        recruitMapper.addNewRecruit(recruit);
+    }
+
+    public void modifyRecruitById(Recruit recruit) {
+        recruitMapper.modifyRecruitById(recruit);
+    }
+
+    public void modifyRecruitStateById(Recruit recruit) {
+        recruitMapper.modifyRecruitStateById(recruit);
+    }
+
+    public void deleteRecruitById(Recruit recruit) {
+        recruitMapper.deleteRecruitById(recruit);
+    }
+
+    public List<Recruit> getRecruitCurrentPage(int state, int start, int end) {
+        return recruitMapper.getRecruitCurrentPage(state,start,end);
+    }
+
+
 }

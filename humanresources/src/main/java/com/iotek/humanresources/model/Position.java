@@ -14,6 +14,10 @@ public class Position implements Serializable {
     public Position() {
     }
 
+    public Position(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

@@ -13,4 +13,16 @@ public interface RecruitService {
 
     Recruit getRecruitById(Recruit temp);
 
+    List<Recruit> getAllRecruit();
+
+    void addNewRecruit(Recruit recruit);
+
+    void modifyRecruitById(Recruit recruit);
+
+    void modifyRecruitStateById(Recruit recruit);
+
+    void deleteRecruitById(Recruit recruit);
+
+    List<Recruit> getRecruitCurrentPage(int state, int start, int end);
+
 }
