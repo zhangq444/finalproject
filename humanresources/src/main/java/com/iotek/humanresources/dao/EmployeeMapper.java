@@ -1,5 +1,6 @@
 package com.iotek.humanresources.dao;
 
+import com.iotek.humanresources.model.Department;
 import com.iotek.humanresources.model.Employee;
 import org.springframework.stereotype.Repository;
 
@@ -17,5 +18,9 @@ public interface EmployeeMapper {
     List<Employee> getEmployeeByName(Employee temp);
 
     void addNewEmployee(Employee employee);
+
+    List<Employee> getEmployeeByDEPID(Department temp);
+
+    List<Employee> getEmployeeByPOSID(int checkEmpPosId);
 
 }

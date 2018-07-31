@@ -18,4 +18,20 @@ public class PositionServiceImpl implements PositionService {
     public Position getPositionById(Position temp) {
         return positionMapper.getPositionById(temp);
     }
+
+    public void addNewPosition(Position position) {
+        positionMapper.addNewPosition(position);
+    }
+
+    public Position getPositionByName(Position position) {
+        return positionMapper.getPositionByName(position);
+    }
+
+    public void modifyPositionNameSalaryById(Position position) {
+        positionMapper.modifyPositionNameSalaryById(position);
+    }
+
+    public void deletePositionById(Position position) {
+        positionMapper.deletePositionById(position);
+    }
 }

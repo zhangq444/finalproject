@@ -34,8 +34,16 @@
 <br>
 <br>
 
+${sessionScope.deleteDepartmentError}<br>
+${sessionScope.addPositionError}<br>
+${sessionScope.deletePositionError}<br>
+
 <c:if test="${fn:length(sessionScope.showPositionList)==0}">
-    该部门下没有职位
+    该部门下没有职位<br>
+    <form action="addNewPosition">
+        <input type="hidden" value="${sessionScope.showSelectDepartment.id}" name="addPosDepId">
+        <input type="submit" value="增加职位">
+    </form>
 </c:if>
 
 <c:if test="${fn:length(sessionScope.showPositionList)!=0}">
@@ -45,6 +53,9 @@
             <th>职位名称</th>
             <th>职位薪资</th>
             <th>所属部门</th>
+            <th>查看员工</th>
+            <th>修改职位信息</th>
+            <th>删除职位</th>
         </tr>
         <c:forEach var="i" begin="0" end="${fn:length(sessionScope.showPositionList)-1}">
             <tr>
@@ -52,10 +63,36 @@
                 <td>${sessionScope.showPositionList[i].name}</td>
                 <td>${sessionScope.showPositionList[i].salary}</td>
                 <td>${sessionScope.showPositionList[i].department.name}</td>
+                <td>
+                    <form action="checkEmployee">
+                        <input type="hidden" value="${sessionScope.showPositionList[i].id}" name="checkEmpPosId">
+                        <input type="submit" value="查看员工">
+                    </form>
+                </td>
+                <td>
+                    <form action="modifyPosition">
+                        <input type="hidden" value="${sessionScope.showPositionList[i].id}" name="modifyPositionInfoId">
+                        <input type="submit" value="修改职位信息">
+                    </form>
+                </td>
+                <td>
+                    <form action="deletePosition">
+                        <input type="hidden" value="${sessionScope.showPositionList[i].id}" name="deletePositionId">
+                        <input type="submit" value="删除职位">
+                    </form>
+                </td>
             </tr>
         </c:forEach>
-    </table>
+    </table><br>
+    <br>
+    <form action="addNewPosition">
+        <input type="hidden" value="${sessionScope.showSelectDepartment.id}" name="addPosDepId">
+        <input type="submit" value="增加职位">
+    </form>
 </c:if>
+
+
+
 
 </body>
 </html>

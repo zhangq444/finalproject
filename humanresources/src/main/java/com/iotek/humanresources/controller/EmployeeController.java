@@ -87,6 +87,21 @@ public class EmployeeController {
 
     }
 
+    @RequestMapping("/checkEmployee")
+    public String checkEmployee(int checkEmpPosId,HttpSession session){
+        List<Employee> employeeList=employeeService.getEmployeeByPOSID(checkEmpPosId);
+
+        session.setAttribute("checkEmployeeList",employeeList);
+        return "checkEmployee";
+
+    }
+
+    @RequestMapping("/employeeManage")
+    public String employeeManage(){
+
+        return "employeeManage";
+    }
+
 
 
 

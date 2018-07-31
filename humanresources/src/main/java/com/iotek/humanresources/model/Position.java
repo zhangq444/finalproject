@@ -18,6 +18,13 @@ public class Position implements Serializable {
         this.id = id;
     }
 
+    public Position(String name, Department department, double salary) {
+        this.name = name;
+        this.department = department;
+        this.salary = salary;
+    }
+
+
     public int getId() {
         return id;
     }

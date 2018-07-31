@@ -28,6 +28,20 @@
         AND emp.EMP_UNAME=#{uname}
     </select>
 
+    <select id="getEmployeeByDEPID" resultMap="employeeMap">
+        SELECT * FROM T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
+        WHERE emp.EMP_DEPID=dep.DEP_ID
+        AND emp.EMP_POSID=pos.POS_ID
+        AND emp.EMP_DEPID=#{id}
+    </select>
+
+    <select id="getEmployeeByPOSID" resultMap="employeeMap">
+        SELECT * FROM T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
+        WHERE emp.EMP_DEPID=dep.DEP_ID
+        AND emp.EMP_POSID=pos.POS_ID
+        AND emp.EMP_POSID=#{0}
+    </select>
+
     <resultMap id="employeeMap" type="employee">
         <id property="id" column="EMP_ID"></id>
         <result property="name" column="EMP_NAME"></result>

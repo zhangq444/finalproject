@@ -1,8 +1,10 @@
 package com.iotek.humanresources.controller;
 
 import com.iotek.humanresources.model.Department;
+import com.iotek.humanresources.model.Employee;
 import com.iotek.humanresources.model.Position;
 import com.iotek.humanresources.service.DepartmentService;
+import com.iotek.humanresources.service.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,16 +21,20 @@ import java.util.List;
 public class DepartmentController {
     @Resource
     private DepartmentService departmentService;
+    @Resource
+    private EmployeeService employeeService;
 
     @RequestMapping("/showDepartment")
     public String showDepartment(HttpSession session){
         List<Department> departmentList=departmentService.getAllDepartment();
         //System.out.println(departmentList);
 
-
-
         session.setAttribute("showDepartmentList",departmentList);
         session.setAttribute("showPositionList",null);//刷新session，将之前的查询记录清空
+        session.setAttribute("deleteDepartmentError","");//刷新session，将之前的错误的删除部门的记录清空
+        session.setAttribute("showSelectDepartment",null);//刷新session，将之前增加职位时选择的什么部门增加职位记录清空
+        session.setAttribute("addPositionError","");//刷新session，将之前增加职位的错误信息清空
+        session.setAttribute("deletePositionError","");//刷新session，将之前删除职位的错误信息清空
         return "showDepartment";
     }
 
@@ -47,10 +53,15 @@ public class DepartmentController {
             }
 
             session.setAttribute("showPositionList",positionList);
+            session.setAttribute("showSelectDepartment",department);
+            session.setAttribute("addPositionError","");//刷新session，将之前增加职位的错误信息清空
+            session.setAttribute("deletePositionError","");//刷新session，将之前删除职位的错误信息清空
             return "showDepartment";
         }
         if(addButton!=null){
             session.setAttribute("addDepartmentError","");
+            session.setAttribute("addPositionError","");//刷新session，将之前增加职位的错误信息清空
+            session.setAttribute("deletePositionError","");//刷新session，将之前删除职位的错误信息清空
             return "addDepartment";
         }
         if(modifyButton!=null){
@@ -62,13 +73,29 @@ public class DepartmentController {
 
             session.setAttribute("modifyDepartment",department);
             session.setAttribute("modifyDepartmentError","");
+            session.setAttribute("addPositionError","");//刷新session，将之前增加职位的错误信息清空
+            session.setAttribute("deletePositionError","");//刷新session，将之前删除职位的错误信息清空
             return "modifyDepartment";
         }
         if(deleteButton!=null){
+
+
+            //还有问题需要解决
+
+
+
+
+
+
             if(selectDep==0){
                 return "showDepartment";
             }
             Department temp=new Department(selectDep);
+            List<Employee> employeeList=employeeService.getEmployeeByDEPID(temp);
+            if(employeeList!=null&&employeeList.size()>0){
+                session.setAttribute("deleteDepartmentError","该部门仍有员工，不能删除");
+                return "showDepartment";
+            }
             departmentService.deleteDepartmentById(temp);
             //更新session
             List<Department> departmentList=departmentService.getAllDepartment();
@@ -96,6 +123,8 @@ public class DepartmentController {
         List<Department> departmentList=departmentService.getAllDepartment();
         session.setAttribute("showDepartmentList",departmentList);
 
+        session.setAttribute("addPositionError","");//刷新session，将之前增加职位的错误信息清空
+        session.setAttribute("deletePositionError","");//刷新session，将之前删除职位的错误信息清空
         return "showDepartment";
     }
 
@@ -113,6 +142,8 @@ public class DepartmentController {
         //更新department的session
         List<Department> departmentList=departmentService.getAllDepartment();
         session.setAttribute("showDepartmentList",departmentList);
+        session.setAttribute("addPositionError","");//刷新session，将之前增加职位的错误信息清空
+        session.setAttribute("deletePositionError","");//刷新session，将之前删除职位的错误信息清空
 
         return "showDepartment";
     }

@@ -1,5 +1,6 @@
 package com.iotek.humanresources.service;
 
+import com.iotek.humanresources.model.Department;
 import com.iotek.humanresources.model.Employee;
 
 import java.util.List;
@@ -15,5 +16,9 @@ public interface EmployeeService {
     List<Employee> getEmployeeByName(Employee temp);
 
     void addNewEmployee(Employee employee);
+
+    List<Employee> getEmployeeByDEPID(Department temp);
+
+    List<Employee> getEmployeeByPOSID(int checkEmpPosId);
 
 }

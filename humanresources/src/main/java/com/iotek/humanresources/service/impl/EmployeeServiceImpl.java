@@ -1,6 +1,7 @@
 package com.iotek.humanresources.service.impl;
 
 import com.iotek.humanresources.dao.EmployeeMapper;
+import com.iotek.humanresources.model.Department;
 import com.iotek.humanresources.model.Employee;
 import com.iotek.humanresources.service.EmployeeService;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     public void addNewEmployee(Employee employee) {
         employeeMapper.addNewEmployee(employee);
+    }
+
+    public List<Employee> getEmployeeByDEPID(Department temp) {
+        return employeeMapper.getEmployeeByDEPID(temp);
+    }
+
+    public List<Employee> getEmployeeByPOSID(int checkEmpPosId) {
+        return employeeMapper.getEmployeeByPOSID(checkEmpPosId);
     }
 
 

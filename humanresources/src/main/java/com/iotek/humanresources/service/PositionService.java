@@ -8,4 +8,12 @@ import com.iotek.humanresources.model.Position;
 public interface PositionService {
     Position getPositionById(Position temp);
 
+    void addNewPosition(Position position);
+
+    Position getPositionByName(Position position);
+
+    void modifyPositionNameSalaryById(Position position);
+
+    void deletePositionById(Position position);
+
 }

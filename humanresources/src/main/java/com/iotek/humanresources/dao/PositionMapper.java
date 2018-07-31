@@ -10,4 +10,12 @@ import org.springframework.stereotype.Repository;
 public interface PositionMapper {
     Position getPositionById(Position temp);
 
+    void addNewPosition(Position position);
+
+    Position getPositionByName(Position position);
+
+    void modifyPositionNameSalaryById(Position position);
+
+    void deletePositionById(Position position);
+
 }
