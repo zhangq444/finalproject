@@ -41,5 +41,25 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeMapper.getEmployeeByPOSID(checkEmpPosId);
     }
 
+    public List<Employee> getEmployeeByState(Employee employee) {
+        return employeeMapper.getEmployeeByState(employee);
+    }
+
+    public List<Employee> getEmployeeByDEPIDAndState(Integer selectDep, int state1, int state2) {
+        return employeeMapper.getEmployeeByDEPIDAndState(selectDep,state1,state2);
+    }
+
+    public List<Employee> getEmployeeByPOSIDAndState(Integer selectPosition, int state1, int state2) {
+        return employeeMapper.getEmployeeByPOSIDAndState(selectPosition,state1,state2);
+    }
+
+    public void modifyEmployeeDepartmenPositionById(Employee employee) {
+        employeeMapper.modifyEmployeeDepartmenPositionById(employee);
+    }
+
+    public void modifyEmployeeStateById(Employee employee) {
+        employeeMapper.modifyEmployeeStateById(employee);
+    }
+
 
 }

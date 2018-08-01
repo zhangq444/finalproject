@@ -1,9 +1,13 @@
 package com.iotek.humanresources.controller;
 
+import com.iotek.humanresources.model.Department;
 import com.iotek.humanresources.model.Employee;
 import com.iotek.humanresources.model.Interview;
+import com.iotek.humanresources.model.Position;
+import com.iotek.humanresources.service.DepartmentService;
 import com.iotek.humanresources.service.EmployeeService;
 import com.iotek.humanresources.service.InterviewService;
+import com.iotek.humanresources.service.PositionService;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +26,10 @@ public class EmployeeController {
     private EmployeeService employeeService;
     @Resource
     private InterviewService interviewService;
+    @Resource
+    private DepartmentService departmentService;
+    @Resource
+    private PositionService positionService;
 
     @RequestMapping("/admitEmployee")
     public String admitEmployee(HttpSession session){
@@ -97,12 +105,136 @@ public class EmployeeController {
     }
 
     @RequestMapping("/employeeManage")
-    public String employeeManage(){
+    public String employeeManage(HttpSession session){
+        List<Department> departmentList=departmentService.getAllDepartment();
 
+        session.setAttribute("EmpDepartmentList",departmentList);
+        session.setAttribute("selectEmployeeError","");//清空session，去掉选择错误的提示
         return "employeeManage";
     }
 
+    @RequestMapping("/selectEmployee")
+    public String selectEmployee(Integer selectDep,Integer selectPosition,Integer selectOnJob,String onDep,String onDepPos,HttpSession session){
+        //System.out.println(selectDep+"--"+selectPosition+"--"+selectOnJob+"--"+onDep+"--"+onDepPos);
+        session.setAttribute("selectEmployeeError","");
+        if(onDep!=null){
+            if(selectDep==null||selectDep==0||selectOnJob==null||selectOnJob==0){
+                session.setAttribute("selectEmployeeError","请选择相关条件");
+                return "employeeManage";
+            }
+            if(selectOnJob==-1){//查询离职员工的情况
+                int state=-1;
+                Employee employee=new Employee();
+                employee.setState(state);
+                List<Employee> employeeList=employeeService.getEmployeeByState(employee);
 
+                session.setAttribute("showEmployeeList",employeeList);
+                return "employeeManage";
+            }
+            //按照部门查询在职员工情况
+            int state1=0;//代表试用期
+            int state2=1;//代表正式员工
+            List<Employee> employeeList=employeeService.getEmployeeByDEPIDAndState(selectDep,state1,state2);
+
+            session.setAttribute("showEmployeeList",employeeList);
+            return "employeeManage";
+        }
+        if(onDepPos!=null){
+            if(selectDep==null||selectDep==0||selectPosition==null||selectPosition==0||selectOnJob==null||selectOnJob==0){
+                session.setAttribute("selectEmployeeError","请选择相关条件");
+                return "employeeManage";
+            }
+            if(selectOnJob==-1){//查询离职员工的情况
+                int state=-1;
+                Employee employee=new Employee();
+                employee.setState(state);
+                List<Employee> employeeList=employeeService.getEmployeeByState(employee);
+
+                session.setAttribute("showEmployeeList",employeeList);
+                return "employeeManage";
+            }
+            //按照职位查询在职员工情况
+            int state1=0;//代表试用期
+            int state2=1;//代表正式员工
+            List<Employee> employeeList=employeeService.getEmployeeByPOSIDAndState(selectPosition,state1,state2);
+
+            session.setAttribute("showEmployeeList",employeeList);
+            return "employeeManage";
+        }
+        return "employeeManage";
+
+    }
+
+    @RequestMapping("/checkEmployeeInfo")
+    public String checkEmployeeInfo(int checkInfo,int employeeInfoId,HttpSession session){
+        Employee temp=new Employee(employeeInfoId);
+        Employee employee=employeeService.getEmployeeById(temp);
+
+        if(checkInfo==1){
+            session.setAttribute("showEmployeeInfo",employee);
+            return "showEmployeeInfo";
+        }
+        if(checkInfo==2){
+
+            return "showEmployeeSalary";
+        }
+        if(checkInfo==3){
+
+            return "showEmployeeTrain";
+        }
+        if(checkInfo==4){
+
+            return "showEmployeePerformance";
+        }
+        if(checkInfo==5){
+
+            return "showEmployeeAttendance";
+        }
+
+        return null;
+    }
+
+    @RequestMapping("/changePosition")
+    public String changePosition(int changePositionId,HttpSession session){
+        Employee temp=new Employee(changePositionId);
+        Employee employee=employeeService.getEmployeeById(temp);
+
+        session.setAttribute("changePositionEmployee",employee);
+        List<Department> departmentList=departmentService.getAllDepartment();
+        session.setAttribute("departmentList",departmentList);
+        return "changePosition";
+    }
+
+    @RequestMapping("/changePosition1")
+    public String changePosition1(int selectDep,int selectPosition,HttpSession session){
+        if(selectDep==0||selectPosition==0){
+            session.setAttribute("changePositionError","请选择部门与职位");
+            return "changePosition";
+        }
+        Employee employee= (Employee) session.getAttribute("changePositionEmployee");
+        Department temp=new Department(selectDep);
+        Department departmentNew=departmentService.getDepartment(temp);
+        Position temp1=new Position(selectPosition);
+        Position positionNew=positionService.getPositionById(temp1);
+        employee.setDepartment(departmentNew);
+        employee.setPosition(positionNew);
+
+        employeeService.modifyEmployeeDepartmenPositionById(employee);
+        session.setAttribute("changePositionError","");
+        return "employeeManage";
+
+    }
+
+    @RequestMapping("/departureEmployee")
+    public String departureEmployee(int departureId,HttpSession session){
+        Employee temp=new Employee(departureId);
+        Employee employee=employeeService.getEmployeeById(temp);
+        int state=-1;
+        employee.setState(state);
+
+        employeeService.modifyEmployeeStateById(employee);
+        return "managerWelcome";
+    }
 
 
 }

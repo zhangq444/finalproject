@@ -23,4 +23,14 @@ public interface EmployeeMapper {
 
     List<Employee> getEmployeeByPOSID(int checkEmpPosId);
 
+    List<Employee> getEmployeeByState(Employee employee);
+
+    List<Employee> getEmployeeByDEPIDAndState(Integer selectDep, int state1, int state2);
+
+    List<Employee> getEmployeeByPOSIDAndState(Integer selectPosition, int state1, int state2);
+
+    void modifyEmployeeDepartmenPositionById(Employee employee);
+
+    void modifyEmployeeStateById(Employee employee);
+
 }

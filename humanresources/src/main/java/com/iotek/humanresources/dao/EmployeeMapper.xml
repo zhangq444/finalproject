@@ -8,6 +8,14 @@
         #{school},#{major},#{education},#{department.id},#{position.id},#{hiredate},#{state},#{uname},#{upassword})
     </insert>
 
+    <update id="modifyEmployeeDepartmenPositionById">
+        UPDATE T_EMPLOYEE SET EMP_DEPID=#{department.id},EMP_POSID=#{position.id} where EMP_ID=#{id}
+    </update>
+
+    <update id="modifyEmployeeStateById">
+        UPDATE T_EMPLOYEE SET EMP_STATE=#{state} where EMP_ID=#{id}
+    </update>
+
     <select id="getAllEmployee" resultMap="employeeMap">
         SELECT * FROM T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
         WHERE emp.EMP_DEPID=dep.DEP_ID
@@ -42,6 +50,29 @@
         AND emp.EMP_POSID=#{0}
     </select>
 
+    <select id="getEmployeeByState" resultMap="employeeMap">
+        SELECT * FROM T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
+        WHERE emp.EMP_DEPID=dep.DEP_ID
+        AND emp.EMP_POSID=pos.POS_ID
+        AND emp.EMP_STATE=#{state}
+    </select>
+
+    <select id="getEmployeeByDEPIDAndState" resultMap="employeeMap">
+        SELECT * FROM T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
+        WHERE emp.EMP_DEPID=dep.DEP_ID
+        AND emp.EMP_POSID=pos.POS_ID
+        AND emp.EMP_DEPID=#{0}
+        and (emp.EMP_STATE=#{1} or emp.EMP_STATE=#{2} )
+    </select>
+
+    <select id="getEmployeeByPOSIDAndState" resultMap="employeeMap">
+        SELECT * FROM T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
+        WHERE emp.EMP_DEPID=dep.DEP_ID
+        AND emp.EMP_POSID=pos.POS_ID
+        AND emp.EMP_POSID=#{0}
+        and (emp.EMP_STATE=#{1} or emp.EMP_STATE=#{2} )
+    </select>
+
     <resultMap id="employeeMap" type="employee">
         <id property="id" column="EMP_ID"></id>
         <result property="name" column="EMP_NAME"></result>
@@ -56,6 +87,8 @@
         <result property="education" column="EMP_EDUCATION"></result>
         <result property="hiredate" column="EMP_HIREDATE"></result>
         <result property="state" column="EMP_STATE"></result>
+        <result property="uname" column="EMP_UNAME"></result>
+        <result property="upassword" column="EMP_UPASSWORD"></result>
         <association property="department" javaType="department" >
             <id property="id" column="DEP_ID"></id>
             <result property="name" column="DEP_NAME"></result>

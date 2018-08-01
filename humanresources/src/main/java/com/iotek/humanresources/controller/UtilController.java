@@ -59,7 +59,10 @@ public class UtilController {
         return "managerWelcome";
     }
 
-
+    @RequestMapping("/returnEmployeeManage")
+    public String returnEmployeeManage(){
+        return "employeeManage";
+    }
 
 
 }
