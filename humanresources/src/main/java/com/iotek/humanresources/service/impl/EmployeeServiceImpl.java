@@ -57,9 +57,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeMapper.modifyEmployeeDepartmenPositionById(employee);
     }
 
-    public void modifyEmployeeStateById(Employee employee) {
-        employeeMapper.modifyEmployeeStateById(employee);
+    public void modifyEmployeeStateDepartmentPositionById(int departureId, int departmentId, int positionId, int state) {
+        employeeMapper.modifyEmployeeStateDepartmentPositionById(departureId,departmentId,positionId,state);
     }
 
+    public Employee getEmployeeByIdNoDepPos(Employee temp) {
+        return employeeMapper.getEmployeeByIdNoDepPos(temp);
+    }
 
 }

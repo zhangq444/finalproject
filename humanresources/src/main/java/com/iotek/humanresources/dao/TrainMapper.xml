@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.humanresources.dao.TrainMapper">
+    <insert id="addNewTrain">
+        INSERT INTO T_TRAIN(T_ID, T_THEME, T_CONTENT, T_BEGINTIME, T_ENDTIME, T_ADDRESS, T_STATE)
+        VALUES (T_TRAIN_SEQ.nextval,#{theme},#{content},#{begintime},#{endtime},#{address},#{state})
+    </insert>
+
+    <update id="modifyTrainThemeContentBegintimeEndtimeAddressById">
+        UPDATE T_TRAIN SET T_THEME=#{theme},T_CONTENT=#{content},T_BEGINTIME=#{begintime},T_ENDTIME=#{endtime},T_ADDRESS=#{address}
+        where T_ID=#{id}
+    </update>
+
+    <update id="modifyTrainReleasetimeStateById">
+        UPDATE T_TRAIN SET T_RELEASETIME=#{releasetime},T_STATE=#{state} where T_ID=#{id}
+    </update>
+
+    <update id="modifyTrainWithdrawTrain">
+        UPDATE T_TRAIN SET T_RELEASETIME=NULL,T_STATE=#{state} where T_ID=#{id}
+    </update>
+
+    <select id="getAllTrain" resultMap="trainMap">
+        SELECT * FROM T_TRAIN tr,T_EMPTOTR ett,T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
+        WHERE tr.T_ID=ett.ETT_TID
+        AND emp.EMP_ID=ett.ETT_EMPID
+        AND emp.EMP_DEPID=dep.DEP_ID
+        AND emp.EMP_POSID=pos.POS_ID
+    </select>
+
+    <select id="getTrainByThemeContentAddress" resultMap="trainMap">
+        SELECT * FROM T_TRAIN
+        WHERE T_THEME=#{theme}
+        and T_CONTENT=#{content}
+        and T_ADDRESS=#{address}
+    </select>
+
+    <select id="getTrainById" resultMap="trainMap">
+        SELECT * FROM T_TRAIN tr,T_EMPTOTR ett,T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
+        WHERE tr.T_ID=ett.ETT_TID
+        AND emp.EMP_ID=ett.ETT_EMPID
+        AND emp.EMP_DEPID=dep.DEP_ID
+        AND emp.EMP_POSID=pos.POS_ID
+        AND tr.T_ID=#{id}
+    </select>
+
+    <resultMap id="trainMap" type="train">
+        <id property="id" column="T_ID"></id>
+        <result property="theme" column="T_THEME"></result>
+        <result property="content" column="T_CONTENT"></result>
+        <result property="begintime" column="T_BEGINTIME"></result>
+        <result property="endtime" column="T_ENDTIME"></result>
+        <result property="address" column="T_ADDRESS"></result>
+        <result property="releasetime" column="T_RELEASETIME"></result>
+        <result property="state" column="T_STATE"></result>
+        <collection property="employeeList" ofType="employee" resultMap="com.iotek.humanresources.dao.EmployeeMapper.employeeMap"></collection>
+    </resultMap>
+
+</mapper>

@@ -12,8 +12,8 @@
         UPDATE T_EMPLOYEE SET EMP_DEPID=#{department.id},EMP_POSID=#{position.id} where EMP_ID=#{id}
     </update>
 
-    <update id="modifyEmployeeStateById">
-        UPDATE T_EMPLOYEE SET EMP_STATE=#{state} where EMP_ID=#{id}
+    <update id="modifyEmployeeStateDepartmentPositionById">
+        UPDATE T_EMPLOYEE SET EMP_DEPID=#{1},EMP_POSID=#{2},EMP_STATE=#{3} where EMP_ID=#{0}
     </update>
 
     <select id="getAllEmployee" resultMap="employeeMap">
@@ -50,11 +50,8 @@
         AND emp.EMP_POSID=#{0}
     </select>
 
-    <select id="getEmployeeByState" resultMap="employeeMap">
-        SELECT * FROM T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
-        WHERE emp.EMP_DEPID=dep.DEP_ID
-        AND emp.EMP_POSID=pos.POS_ID
-        AND emp.EMP_STATE=#{state}
+    <select id="getEmployeeByState" resultMap="employeeMap1">
+        SELECT * FROM T_EMPLOYEE WHERE EMP_STATE=#{state}
     </select>
 
     <select id="getEmployeeByDEPIDAndState" resultMap="employeeMap">
@@ -71,6 +68,10 @@
         AND emp.EMP_POSID=pos.POS_ID
         AND emp.EMP_POSID=#{0}
         and (emp.EMP_STATE=#{1} or emp.EMP_STATE=#{2} )
+    </select>
+
+    <select id="getEmployeeByIdNoDepPos" resultMap="employeeMap1">
+        SELECT * FROM T_EMPLOYEE WHERE EMP_ID=#{id}
     </select>
 
     <resultMap id="employeeMap" type="employee">
@@ -101,4 +102,21 @@
         </association>
     </resultMap>
 
+    <resultMap id="employeeMap1" type="employee">
+        <id property="id" column="EMP_ID"></id>
+        <result property="name" column="EMP_NAME"></result>
+        <result property="gender" column="EMP_GENDER"></result>
+        <result property="phone" column="EMP_PHONE"></result>
+        <result property="email" column="EMP_EMAIL"></result>
+        <result property="address" column="EMP_ADDRESS"></result>
+        <result property="idcard" column="EMP_IDCARD"></result>
+        <result property="birthday" column="EMP_BIRTHDAY"></result>
+        <result property="school" column="EMP_SCHOOL"></result>
+        <result property="major" column="EMP_MAJOR"></result>
+        <result property="education" column="EMP_EDUCATION"></result>
+        <result property="hiredate" column="EMP_HIREDATE"></result>
+        <result property="state" column="EMP_STATE"></result>
+        <result property="uname" column="EMP_UNAME"></result>
+        <result property="upassword" column="EMP_UPASSWORD"></result>
+    </resultMap>
 </mapper>

@@ -64,5 +64,18 @@ public class UtilController {
         return "employeeManage";
     }
 
+    public static boolean compareDate(Date begin,Date end){
+        long date1=begin.getTime();
+        long date2=end.getTime();
+        return date1<date2?true:false;
+    }
+
+    public static boolean compareTimeTenMinute(Date firstTime,Date secondTime){
+        long time1=firstTime.getTime();
+        long time2=secondTime.getTime();
+        return (time2-time1)>=1000*60*10?true:false;
+    }
+
+
 
 }

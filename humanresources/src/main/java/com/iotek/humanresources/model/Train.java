@@ -1,7 +1,9 @@
 package com.iotek.humanresources.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by grzha on 2018/7/27.
@@ -15,8 +17,22 @@ public class Train implements Serializable {
     private String address;
     private Date releasetime;
     private int state;
+    private List<Employee> employeeList=new ArrayList<Employee>();
 
     public Train() {
+    }
+
+    public Train(String theme, String content, Date begintime, Date endtime, String address, int state) {
+        this.theme = theme;
+        this.content = content;
+        this.begintime = begintime;
+        this.endtime = endtime;
+        this.address = address;
+        this.state = state;
+    }
+
+    public Train(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -83,6 +99,14 @@ public class Train implements Serializable {
         this.state = state;
     }
 
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
+    }
+
     @Override
     public String toString() {
         return "Train{" +
@@ -94,6 +118,7 @@ public class Train implements Serializable {
                 ", address='" + address + '\'' +
                 ", releasetime=" + releasetime +
                 ", state=" + state +
+                ", employeeList=" + employeeList +
                 '}';
     }
 }

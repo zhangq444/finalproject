@@ -1,4 +1,5 @@
 <%@ taglib prefix="fnn" uri="/elFunction" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: grzha
@@ -27,11 +28,23 @@
     员工地址:${sessionScope.showEmployeeInfo.address}<br>
     员工身份证:${sessionScope.showEmployeeInfo.idcard}<br>
     员工生日:${fnn:DateToString(sessionScope.showEmployeeInfo.birthday)}<br>
+    <%--员工生日:${sessionScope.showEmployeeInfo.birthday}<br>--%>
     员工学校:${sessionScope.showEmployeeInfo.school}<br>
     员工专业:${sessionScope.showEmployeeInfo.major}<br>
     员工教育经历:${sessionScope.showEmployeeInfo.education}<br>
-    员工所属部门:${sessionScope.showEmployeeInfo.department.name}<br>
-    员工职位:${sessionScope.showEmployeeInfo.position.name}<br>
+    <c:if test="${sessionScope.showEmployeeInfo.department==null}">
+
+    </c:if>
+    <c:if test="${sessionScope.showEmployeeInfo.department!=null}">
+        员工所属部门:${sessionScope.showEmployeeInfo.department.name}<br>
+    </c:if>
+    <c:if test="${sessionScope.showEmployeeInfo.position==null}">
+
+    </c:if>
+    <c:if test="${sessionScope.showEmployeeInfo.position!=null}">
+        员工职位:${sessionScope.showEmployeeInfo.position.name}<br>
+    </c:if>
+
     员工入职时间:${fnn:DateToString(sessionScope.showEmployeeInfo.hiredate)}<br>
     员工状态:${sessionScope.showEmployeeInfo.state}<br>
     员工用户名:${sessionScope.showEmployeeInfo.uname}<br>

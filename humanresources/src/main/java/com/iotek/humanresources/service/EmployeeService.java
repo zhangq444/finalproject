@@ -29,6 +29,8 @@ public interface EmployeeService {
 
     void modifyEmployeeDepartmenPositionById(Employee employee);
 
-    void modifyEmployeeStateById(Employee employee);
+    void modifyEmployeeStateDepartmentPositionById(int departureId, int departmentId, int positionId, int state);
+
+    Employee getEmployeeByIdNoDepPos(Employee temp);
 
 }

@@ -26,6 +26,15 @@
                     $(obj).each(function () {
                         $("#selectPosition").append("<option value="+this.id+">"+this.name+"</option>")
                     })
+
+                    /*$("#test").empty();
+                    $("#test").append("<tr><th>部门职位</th><th>职位薪资</th><th>查看职员</th></tr>")
+                    $(obj).each(function () {
+                        /!*$("#selectPosition").append("<option value="+this.id+">"+this.name+"</option>")*!/
+                        $("#test").append("<tr><td>"+this.name+"</td><td>"+this.salary+"</td><td><input type='button' value='查看职员'></td></tr>")
+
+                    })*/
+
                 })
             })
         })
@@ -51,7 +60,11 @@
 
     </form>
     <br>
-    ${sessionScope.changePositionError}
+    ${sessionScope.changePositionError}<br>
+
+<%--    <table id="test">
+
+    </table>--%>
 
 
 </body>

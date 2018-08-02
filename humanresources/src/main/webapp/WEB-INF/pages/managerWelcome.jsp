@@ -25,6 +25,7 @@
         <li><a href="recruitManage"><input type="button" value="招聘管理"></a></li>
         <li><a href="showDepartment"><input type="button" value="部门职位管理"></a></li>
         <li><a href="employeeManage"><input type="button" value="员工管理"></a></li>
+        <li><a href="trainManage"><input type="button" value="培训管理"></a></li>
     </ul>
 
 <br>

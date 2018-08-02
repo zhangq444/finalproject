@@ -110,6 +110,7 @@ public class EmployeeController {
 
         session.setAttribute("EmpDepartmentList",departmentList);
         session.setAttribute("selectEmployeeError","");//清空session，去掉选择错误的提示
+        session.setAttribute("showEmployeeList",null);//清空session，将之前的查询记录删除
         return "employeeManage";
     }
 
@@ -149,6 +150,7 @@ public class EmployeeController {
                 Employee employee=new Employee();
                 employee.setState(state);
                 List<Employee> employeeList=employeeService.getEmployeeByState(employee);
+                System.out.println(employeeList);
 
                 session.setAttribute("showEmployeeList",employeeList);
                 return "employeeManage";
@@ -167,11 +169,19 @@ public class EmployeeController {
 
     @RequestMapping("/checkEmployeeInfo")
     public String checkEmployeeInfo(int checkInfo,int employeeInfoId,HttpSession session){
-        Employee temp=new Employee(employeeInfoId);
-        Employee employee=employeeService.getEmployeeById(temp);
+        Employee testEmp=new Employee(employeeInfoId);
+        Employee testEmp1=employeeService.getEmployeeByIdNoDepPos(testEmp);//查询不带部门与职位，判断要显示详细信息的员工是否离职
+        Employee testEmp2=null;
+        if(testEmp1.getState()!=-1){
+            testEmp2=employeeService.getEmployeeById(testEmp);
+        }
 
         if(checkInfo==1){
-            session.setAttribute("showEmployeeInfo",employee);
+            if(testEmp1.getState()==-1){
+                session.setAttribute("showEmployeeInfo",testEmp1);
+            }else {
+                session.setAttribute("showEmployeeInfo",testEmp2);
+            }
             return "showEmployeeInfo";
         }
         if(checkInfo==2){
@@ -227,12 +237,11 @@ public class EmployeeController {
 
     @RequestMapping("/departureEmployee")
     public String departureEmployee(int departureId,HttpSession session){
-        Employee temp=new Employee(departureId);
-        Employee employee=employeeService.getEmployeeById(temp);
+        int departmentId=0;
+        int positionId=0;
         int state=-1;
-        employee.setState(state);
 
-        employeeService.modifyEmployeeStateById(employee);
+        employeeService.modifyEmployeeStateDepartmentPositionById(departureId,departmentId,positionId,state);
         return "managerWelcome";
     }
 
