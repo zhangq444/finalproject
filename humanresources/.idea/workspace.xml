@@ -2,33 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dbda9fd7-3b88-4c3b-bfac-615d0fe9f697" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/controller/EmpToTrController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/controller/TrainController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/dao/EmpToTrMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/dao/EmpToTrMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/dao/TrainMapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/dao/TrainMapper.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/service/EmpToTrService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/service/TrainService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/service/impl/EmpToTrServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/service/impl/TrainServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/addTrain.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/modifyTrain.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/showTrainInfo.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/trainManage.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/controller/EmployeeController.java" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/controller/EmployeeController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/controller/UtilController.java" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/controller/UtilController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/dao/EmployeeMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/dao/EmployeeMapper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/dao/EmployeeMapper.xml" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/dao/EmployeeMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/model/Train.java" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/model/Train.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/service/EmployeeService.java" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/service/EmployeeService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/service/impl/EmployeeServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/iotek/humanresources/service/impl/EmployeeServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/rescources/Mybatisconfig.xml" afterPath="$PROJECT_DIR$/src/main/rescources/Mybatisconfig.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/changePosition.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/changePosition.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/employeeManage.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/employeeManage.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/managerWelcome.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/managerWelcome.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/showEmployeeInfo.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/showEmployeeInfo.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -144,8 +118,8 @@
       <file leaf-file-name="TrainController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/iotek/humanresources/controller/TrainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="167" column="0" lean-forward="true" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+            <state relative-caret-position="576">
+              <caret line="177" column="0" lean-forward="true" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -296,6 +270,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -622,9 +597,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1174,7 +1148,8 @@
       <workItem from="1533134366932" duration="6041000" />
       <workItem from="1533190172976" duration="2299000" />
       <workItem from="1533193436305" duration="21312000" />
-      <workItem from="1533227123277" duration="21000" />
+      <workItem from="1533227123277" duration="137000" />
+      <workItem from="1533259343436" duration="98000" />
     </task>
     <task id="LOCAL-00001" summary="搭建项目的环境以及配置Git">
       <created>1532488082273</created>
@@ -1281,11 +1256,18 @@
       <option name="project" value="LOCAL" />
       <updated>1533112362487</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="完成了管理员对培训的增，改，查，发布，撤回等功能，还有删除没有完成，后面将最后的删除功能完成，然后继续写员工的功能">
+      <created>1533227241404</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1533227241404</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="204954000" />
+    <option name="totallyTimeSpent" value="205168000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -1313,7 +1295,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4928018" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2185501" sideWeight="0.4942717" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22068231" sideWeight="0.4942717" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22867803" sideWeight="0.5057283" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1370,7 +1352,8 @@
     <MESSAGE value="完成了管理员对招聘信息的增删改查的功能  完成二级联动  完成管理员对部门的增删改查&#10;继续完成管理员对职位和员工的增删改查" />
     <MESSAGE value="完成管理员对职位的增删改查   继续完成管理员对员工的增删改查" />
     <MESSAGE value="完成了管理员对员工的增删改查   查询写了基本框架  由于还没有考勤  奖惩和薪资结算  所以就是空的页面  完成了管理员对员工的换岗和离职功能&#10;后面将开始完成员工的功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成了管理员对员工的增删改查   查询写了基本框架  由于还没有考勤  奖惩和薪资结算  所以就是空的页面  完成了管理员对员工的换岗和离职功能&#10;后面将开始完成员工的功能" />
+    <MESSAGE value="完成了管理员对培训的增，改，查，发布，撤回等功能，还有删除没有完成，后面将最后的删除功能完成，然后继续写员工的功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成了管理员对培训的增，改，查，发布，撤回等功能，还有删除没有完成，后面将最后的删除功能完成，然后继续写员工的功能" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1511,14 +1494,14 @@
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/5d79a7d1/7769a07b-6aad-4e1d-a2c2-0ef88ba272a2/ZQ1.T_POSITION">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -1593,6 +1576,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
           <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1647,6 +1631,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
           <caret line="10" column="9" lean-forward="false" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1654,11 +1639,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#498#499#0" expanded="true" />
-            <element signature="e#550#551#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1666,43 +1646,42 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/5d79a7d1/7769a07b-6aad-4e1d-a2c2-0ef88ba272a2/ZQ1.T_DEPARTMENT">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/5d79a7d1/7769a07b-6aad-4e1d-a2c2-0ef88ba272a2/ZQ1.T_EMPLOYEE">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/5d79a7d1/7769a07b-6aad-4e1d-a2c2-0ef88ba272a2/ZQ1.T_EMPTOTR">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -1760,6 +1739,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
           <caret line="24" column="19" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1767,12 +1747,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="621">
           <caret line="43" column="38" lean-forward="true" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
-          <folding>
-            <element signature="e#1099#1100#0" expanded="true" />
-            <element signature="e#1165#1166#0" expanded="true" />
-            <element signature="e#1222#1223#0" expanded="true" />
-            <element signature="e#1282#1283#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1780,19 +1754,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
           <caret line="24" column="4" lean-forward="false" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/5d79a7d1/7769a07b-6aad-4e1d-a2c2-0ef88ba272a2/ZQ1.T_TRAIN">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -1822,8 +1795,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/iotek/humanresources/controller/TrainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="167" column="0" lean-forward="true" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
+        <state relative-caret-position="576">
+          <caret line="177" column="0" lean-forward="true" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
