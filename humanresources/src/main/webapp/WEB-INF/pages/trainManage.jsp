@@ -38,7 +38,7 @@
             <th>查看详情</th>
             <th>发布</th>
             <th>撤回</th>
-            <th>删除</th>
+            <%--<th>删除</th>--%>
         </tr>
         <c:forEach var="i" begin="0" end="${fn:length(sessionScope.trainList)-1}">
             <tr>
@@ -73,12 +73,12 @@
                         <input type="submit" value="撤回">
                     </form>
                 </td>
-                <td>
+                <%--<td>
                     <form action="deleteTrain">
                         <input type="hidden" value="${sessionScope.trainList[i].id}" name="deleteTrainId">
                         <input type="submit" value="删除">
                     </form>
-                </td>
+                </td>--%>
             </tr>
         </c:forEach>
     </table>

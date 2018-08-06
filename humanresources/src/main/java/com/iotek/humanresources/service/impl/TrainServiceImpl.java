@@ -44,4 +44,8 @@ public class TrainServiceImpl implements TrainService {
         trainMapper. modifyTrainWithdrawTrain(train);
     }
 
+    public List<Train> getTrainByEmpIdState(int id, int state) {
+        return trainMapper.getTrainByEmpIdState(id,state);
+    }
+
 }

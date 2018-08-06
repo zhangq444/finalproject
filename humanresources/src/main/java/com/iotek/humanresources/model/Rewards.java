@@ -16,6 +16,17 @@ public class Rewards implements Serializable {
     public Rewards() {
     }
 
+    public Rewards(double money, Date time, Employee employee, String explain) {
+        this.money = money;
+        this.time = time;
+        this.employee = employee;
+        this.explain = explain;
+    }
+
+    public Rewards(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

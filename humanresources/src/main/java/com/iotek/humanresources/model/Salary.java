@@ -1,6 +1,7 @@
 package com.iotek.humanresources.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by grzha on 2018/7/27.
@@ -16,8 +17,25 @@ public class Salary implements Serializable {
     private double realsalary;
     private int state;
     private String instruction;
+    private Date time;//工资结算时间，如果为8月，代表是在8月结算的工资，也就是7月的工资
 
     public Salary() {
+    }
+
+    public Salary(Employee employee, double basesalary, double performance, double overtime, double rewards, double social, double realsalary, int state, Date time) {
+        this.employee = employee;
+        this.basesalary = basesalary;
+        this.performance = performance;
+        this.overtime = overtime;
+        this.rewards = rewards;
+        this.social = social;
+        this.realsalary = realsalary;
+        this.state = state;
+        this.time = time;
+    }
+
+    public Salary(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -100,6 +118,14 @@ public class Salary implements Serializable {
         this.instruction = instruction;
     }
 
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
     @Override
     public String toString() {
         return "Salary{" +
@@ -113,6 +139,7 @@ public class Salary implements Serializable {
                 ", realsalary=" + realsalary +
                 ", state=" + state +
                 ", instruction='" + instruction + '\'' +
+                ", time=" + time +
                 '}';
     }
 }

@@ -26,6 +26,9 @@
         <li><a href="showDepartment"><input type="button" value="部门职位管理"></a></li>
         <li><a href="employeeManage"><input type="button" value="员工管理"></a></li>
         <li><a href="trainManage"><input type="button" value="培训管理"></a></li>
+        <li><a href="salaryManage"><input type="button" value="员工薪资管理"></a></li>
+        <li><a href="checkEmployeeAttendance"><input type="button" value="员工考勤查看"></a></li>
+        <li><a href="rewardsManage"><input type="button" value="奖惩管理"></a></li>
     </ul>
 
 <br>

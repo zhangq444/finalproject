@@ -24,4 +24,6 @@ public interface TrainMapper {
 
     void modifyTrainWithdrawTrain(Train train);
 
+    List<Train> getTrainByEmpIdState(int id, int state);
+
 }

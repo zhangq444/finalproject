@@ -21,6 +21,12 @@
         <function-signature>java.lang.String DateToString1(java.util.Date)</function-signature>
     </function>
 
+    <function>
+        <name>DateToString2</name>
+        <function-class>com.iotek.humanresources.controller.UtilController</function-class>
+        <function-signature>java.lang.String DateToString2(java.util.Date)</function-signature>
+    </function>
+
 
     <!-- Invoke 'Generate' action to add tags or functions -->
 

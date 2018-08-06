@@ -43,6 +43,16 @@
         AND tr.T_ID=#{id}
     </select>
 
+    <select id="getTrainByEmpIdState" resultMap="trainMap">
+        SELECT * FROM T_TRAIN tr,T_EMPTOTR ett,T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
+        WHERE tr.T_ID=ett.ETT_TID
+        AND emp.EMP_ID=ett.ETT_EMPID
+        AND emp.EMP_DEPID=dep.DEP_ID
+        AND emp.EMP_POSID=pos.POS_ID
+        AND emp.EMP_ID=#{0}
+        and tr.T_STATE=#{1}
+    </select>
+
     <resultMap id="trainMap" type="train">
         <id property="id" column="T_ID"></id>
         <result property="theme" column="T_THEME"></result>

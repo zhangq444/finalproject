@@ -54,6 +54,12 @@ public class UtilController {
         return date1;
     }
 
+    public static String DateToString2(Date date){
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+        String date1=simpleDateFormat.format(date);
+        return date1;
+    }
+
     @RequestMapping("/returnManagerWelcome")
     public String returnManagerWelcome(){
         return "managerWelcome";
@@ -74,6 +80,11 @@ public class UtilController {
         long time1=firstTime.getTime();
         long time2=secondTime.getTime();
         return (time2-time1)>=1000*60*10?true:false;
+    }
+
+    @RequestMapping("/returnEmployeeWelcome")
+    public String returnEmployeeWelcome(){
+        return "employeeWelcome";
     }
 
 

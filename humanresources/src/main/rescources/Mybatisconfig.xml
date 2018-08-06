@@ -20,6 +20,9 @@
         <typeAlias type="com.iotek.humanresources.model.Recruitment" alias="recruitment"></typeAlias>
         <typeAlias type="com.iotek.humanresources.model.Interview" alias="interview"></typeAlias>
         <typeAlias type="com.iotek.humanresources.model.Train" alias="train"></typeAlias>
+        <typeAlias type="com.iotek.humanresources.model.Attendance" alias="attendance"></typeAlias>
+        <typeAlias type="com.iotek.humanresources.model.Rewards" alias="rewards"></typeAlias>
+        <typeAlias type="com.iotek.humanresources.model.Salary" alias="salary"></typeAlias>
 
     </typeAliases>
 

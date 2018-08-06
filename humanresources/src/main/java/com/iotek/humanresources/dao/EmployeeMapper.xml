@@ -16,6 +16,12 @@
         UPDATE T_EMPLOYEE SET EMP_DEPID=#{1},EMP_POSID=#{2},EMP_STATE=#{3} where EMP_ID=#{0}
     </update>
 
+    <update id="modifyEmployeeInfoById">
+        UPDATE T_EMPLOYEE SET EMP_PHONE=#{phone},EMP_EMAIL=#{email},EMP_ADDRESS=#{address},EMP_IDCARD=#{idcard},
+        EMP_BIRTHDAY=#{birthday},EMP_SCHOOL=#{school},EMP_MAJOR=#{major}
+        where EMP_ID=#{id}
+    </update>
+
     <select id="getAllEmployee" resultMap="employeeMap">
         SELECT * FROM T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
         WHERE emp.EMP_DEPID=dep.DEP_ID
@@ -72,6 +78,32 @@
 
     <select id="getEmployeeByIdNoDepPos" resultMap="employeeMap1">
         SELECT * FROM T_EMPLOYEE WHERE EMP_ID=#{id}
+    </select>
+
+    <select id="getEmployeeByUnameUpassword" resultMap="employeeMap">
+        SELECT * FROM T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
+        WHERE emp.EMP_DEPID=dep.DEP_ID
+        AND emp.EMP_POSID=pos.POS_ID
+        AND emp.EMP_UNAME=#{uname}
+        and emp.EMP_UPASSWORD=#{upassword}
+    </select>
+
+    <select id="getEmployeeByStateOnJob" resultMap="employeeMap">
+        SELECT * FROM T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
+        WHERE emp.EMP_DEPID=dep.DEP_ID
+        AND emp.EMP_POSID=pos.POS_ID
+        and (emp.EMP_STATE=#{0} or emp.EMP_STATE=#{1} )
+    </select>
+
+    <select id="getEmployeeByPOSIDAndStateByPage" resultMap="employeeMap">
+        SELECT * FROM (
+        SELECT ROWNUM rn,emp.*,dep.*,pos.* FROM T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
+        WHERE emp.EMP_DEPID=dep.DEP_ID
+        AND emp.EMP_POSID=pos.POS_ID
+        AND emp.EMP_POSID=#{0}
+        and (emp.EMP_STATE=#{1} or emp.EMP_STATE=#{2} )
+        ) x
+        where x.rn between #{3} and #{4}
     </select>
 
     <resultMap id="employeeMap" type="employee">

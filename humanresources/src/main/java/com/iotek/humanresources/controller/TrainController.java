@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -91,8 +92,30 @@ public class TrainController {
                 session.setAttribute("addTrainError","输入参数有误");
                 return "addTrain";
             }
+            int state=0;//代表未发布
+            Train train=new Train(theme,content,UtilController.StringToDate1(beginTime),UtilController.StringToDate1(endTime),address,state);
+            trainService.addNewTrain(train);
+            Train trainAfter=trainService.getTrainByThemeContentAddress(train);
 
+            Date trainDate1=UtilController.StringToDate1(traindate);
+            int state1=0;
+            int state2=1;
+            List<Employee> employeeList=employeeService.getEmployeeByStateOnJob(state1,state2);
+            List<Employee> trainEmployeeList=new ArrayList<Employee>();
+            for(Employee temp:employeeList){
+                if(UtilController.compareDate(trainDate1,temp.getHiredate())){
+                    trainEmployeeList.add(temp);
+                }
+            }
 
+            for(Employee empTemp:trainEmployeeList){
+                EmpToTr empTotr=new EmpToTr();
+                empTotr.setEmpid(empTemp.getId());
+                empTotr.setTid(trainAfter.getId());
+
+                empToTrService.addNewEmpToTr(empTotr);
+            }
+            return "managerWelcome";
 
         }
 
@@ -174,6 +197,17 @@ public class TrainController {
         session.setAttribute("withdrawTrainError","");
         return "trainManage";
     }
+
+    @RequestMapping("/checkTrain")
+    public String checkTrain(HttpSession session){
+        Employee employee= (Employee) session.getAttribute("loginEmployee");
+        int state=1;//代表发布的培训
+        List<Train> trainList=trainService.getTrainByEmpIdState(employee.getId(),state);
+
+        session.setAttribute("checkTrainList",trainList);
+        return "checkTrain";
+    }
+
 
 
 

@@ -33,4 +33,11 @@ public interface EmployeeService {
 
     Employee getEmployeeByIdNoDepPos(Employee temp);
 
+    Employee getEmployeeByUnameUpassword(Employee temp);
+
+    List<Employee> getEmployeeByStateOnJob(int state1, int state2);
+
+    void modifyEmployeeInfoById(Employee employee);
+
+    List<Employee> getEmployeeByPOSIDAndStateByPage(int selectPosition, int state1, int state2, int start, int end);
 }

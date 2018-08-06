@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.humanresources.dao.AttendanceMapper">
+    <insert id="addPunintime">
+        INSERT INTO T_ATTENDANCE(A_ID, A_EMPID, A_DATE, A_PUNCHIN, A_STATE)
+        VALUES (T_ATTENDANCE_SEQ.nextval,#{employee.id},#{date},#{punchin},#{state})
+    </insert>
+
+    <update id="modifyAttendancePunchouttimeState">
+        UPDATE T_ATTENDANCE SET A_PUNCHOUT=#{punchout},A_STATE=#{state} where A_ID=#{id}
+    </update>
+
+    <update id="modifyAttendanceOvertimeStateById">
+        UPDATE T_ATTENDANCE SET A_OVERTIME=#{overtime},A_STATE=#{state} where A_ID=#{id}
+    </update>
+
+    <select id="getAttendanceByEMPID" resultMap="attendanceMap">
+        SELECT * FROM T_ATTENDANCE a,T_EMPLOYEE emp
+        WHERE a.A_EMPID=emp.EMP_ID
+        AND a.A_EMPID=#{id}
+    </select>
+
+    <select id="getAttendanceTodayByEMPID" resultMap="attendanceMap">
+        SELECT * FROM T_ATTENDANCE a,T_EMPLOYEE emp
+        WHERE a.A_EMPID=emp.EMP_ID
+        AND a.A_EMPID=#{id}
+        and to_char(a.A_DATE,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd')
+    </select>
+
+    <select id="getAttendanceByEmpIDByPage" resultMap="attendanceMap">
+        SELECT * FROM (
+        SELECT ROWNUM rn,a.*,emp.* FROM T_ATTENDANCE a,T_EMPLOYEE emp
+        WHERE a.A_EMPID=emp.EMP_ID
+        AND a.A_EMPID=#{0}
+        ) x
+        where x.rn between #{1} and #{2}
+    </select>
+
+    <resultMap id="attendanceMap" type="attendance">
+        <id property="id" column="A_ID"></id>
+        <result property="date" column="A_DATE"></result>
+        <result property="punchin" column="A_PUNCHIN"></result>
+        <result property="punchout" column="A_PUNCHOUT"></result>
+        <result property="state" column="A_STATE"></result>
+        <result property="overtime" column="A_OVERTIME"></result>
+        <association property="employee" javaType="employee" resultMap="com.iotek.humanresources.dao.EmployeeMapper.employeeMap"></association>
+    </resultMap>
+
+</mapper>

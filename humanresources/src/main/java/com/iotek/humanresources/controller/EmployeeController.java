@@ -245,5 +245,72 @@ public class EmployeeController {
         return "managerWelcome";
     }
 
+    @RequestMapping("/employeeLogin")
+    public String employeeLogin(String uname,String upassword,HttpSession session){
+        Employee temp=new Employee(uname,upassword);
+        Employee loginEmployee=employeeService.getEmployeeByUnameUpassword(temp);
+        if(loginEmployee==null){
+            session.setAttribute("employeeLoginError","用户名或密码错误");
+            return "employeeLogin";
+        }
+        session.setAttribute("loginEmployee",loginEmployee);
+        return "employeeWelcome";
+
+
+    }
+
+    @RequestMapping("/personInfoManage")
+    public String personInfoManage(HttpSession session){
+        //Employee employee= (Employee) session.getAttribute("loginEmployee");
+
+        return "personInfo";
+    }
+
+    @RequestMapping("/modifyPersonInfo")
+    public String modifyPersonInfo(){
+        return "modifyPersonInfo";
+    }
+
+    @RequestMapping("/modifyPersonInfo1")
+    public String modifyPersonInfo1(String phone,String email,String address,String idcard,String birthday,String school,String major,HttpSession session){
+        Employee employee= (Employee) session.getAttribute("loginEmployee");
+        employee.setPhone(phone);
+        employee.setEmail(email);
+        employee.setAddress(address);
+        employee.setIdcard(idcard);
+        employee.setBirthday(UtilController.StringToDate(birthday));
+        employee.setSchool(school);
+        employee.setMajor(major);
+
+        employeeService.modifyEmployeeInfoById(employee);
+        session.setAttribute("loginEmployee",employee);//更新session
+        return "personInfo";
+    }
+
+    @RequestMapping("/checkEmployeeDetail")
+    public String checkEmployeeDetail(HttpSession session){
+        List<Department> departmentList=departmentService.getAllDepartment();
+
+        session.setAttribute("checkEmployeeDepartmentList",departmentList);
+        return "checkEmployeeDetail";
+
+    }
+
+    @RequestMapping("/checkEmployeeDetail1")
+    public String checkEmployeeDetail1(int selectDep,int selectPosition,HttpSession session){
+        if(selectDep==0||selectPosition==0){
+            session.setAttribute("checkEmployeeDetailError","请对部门和职位进行选择");
+            return "checkEmployeeDetail";
+        }
+
+        List<Employee> employeeList=employeeService.getEmployeeByPOSID(selectPosition);
+
+        session.setAttribute("checkEmployeeDetailList",employeeList);
+        return "checkEmployeeDetail";
+
+
+
+    }
+
 
 }

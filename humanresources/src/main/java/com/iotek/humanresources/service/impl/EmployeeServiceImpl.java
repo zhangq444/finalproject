@@ -65,4 +65,20 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeMapper.getEmployeeByIdNoDepPos(temp);
     }
 
+    public Employee getEmployeeByUnameUpassword(Employee temp) {
+        return employeeMapper.getEmployeeByUnameUpassword(temp);
+    }
+
+    public List<Employee> getEmployeeByStateOnJob(int state1, int state2) {
+        return employeeMapper.getEmployeeByStateOnJob(state1,state2);
+    }
+
+    public void modifyEmployeeInfoById(Employee employee) {
+        employeeMapper.modifyEmployeeInfoById(employee);
+    }
+
+    public List<Employee> getEmployeeByPOSIDAndStateByPage(int selectPosition, int state1, int state2, int start, int end) {
+        return employeeMapper.getEmployeeByPOSIDAndStateByPage(selectPosition,state1,state2,start,end);
+    }
+
 }

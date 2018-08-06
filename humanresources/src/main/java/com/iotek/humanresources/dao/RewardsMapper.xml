@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.humanresources.dao.RewardsMapper">
+    <insert id="addNewRewards">
+        INSERT INTO T_REWARDS(RW_ID, RW_MONEY, RW_TIME, RW_EMPID, RW_EXPLAIN)
+        VALUES (T_REWARDS_SEQ.nextval,#{money},#{time},#{employee.id},#{explain})
+    </insert>
+
+    <update id="modifyRewardsMoneyExplainById">
+        UPDATE T_REWARDS SET RW_MONEY=#{money},RW_EXPLAIN=#{explain} where RW_ID=#{id}
+    </update>
+
+    <delete id="deleteRewardsLate">
+        DELETE FROM T_REWARDS WHERE to_char(RW_TIME,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd')
+        AND RW_EXPLAIN=#{0}
+        and RW_EMPID=#{1}
+    </delete>
+
+    <delete id="deleteRewardsById">
+        DELETE FROM T_REWARDS WHERE RW_ID=#{id}
+    </delete>
+
+    <select id="getTodayLateRewards" resultMap="rewardsMap">
+        SELECT * FROM T_REWARDS rw,T_EMPLOYEE emp
+        where rw.RW_EMPID=emp.EMP_ID
+        AND to_char(RW_TIME,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd')
+        AND rw.RW_EXPLAIN=#{0}
+        and rw.RW_EMPID=#{1}
+    </select>
+
+    <select id="getTodayEarlyRewards" resultMap="rewardsMap">
+        SELECT * FROM T_REWARDS rw,T_EMPLOYEE emp
+        where rw.RW_EMPID=emp.EMP_ID
+        AND to_char(RW_TIME,'yyyy-mm-dd')=to_char(sysdate,'yyyy-mm-dd')
+        AND rw.RW_EXPLAIN=#{0}
+        and rw.RW_EMPID=#{1}
+    </select>
+
+    <select id="getAllRewardsByEMPID" resultMap="rewardsMap">
+        SELECT * FROM T_REWARDS rw,T_EMPLOYEE emp
+        WHERE rw.RW_EMPID=emp.EMP_ID
+         AND rw.RW_EMPID=#{id}
+    </select>
+
+    <select id="getAllRewardsByEMPIDByPage" resultMap="rewardsMap">
+        SELECT * FROM (
+        SELECT ROWNUM rn,rw.*,emp.* FROM T_REWARDS rw,T_EMPLOYEE emp
+        WHERE rw.RW_EMPID=emp.EMP_ID
+         AND rw.RW_EMPID=#{0}
+        ) x
+        where x.rn between #{1} and #{2}
+    </select>
+
+    <select id="getRewardsById" resultMap="rewardsMap">
+        SELECT * FROM T_REWARDS rw,T_EMPLOYEE emp
+        WHERE rw.RW_EMPID=emp.EMP_ID
+        AND rw.RW_ID=#{id}
+    </select>
+
+    <resultMap id="rewardsMap" type="rewards">
+        <id property="id" column="RW_ID"></id>
+        <result property="money" column="RW_MONEY"></result>
+        <result property="time" column="RW_TIME"></result>
+        <result property="explain" column="RW_EXPLAIN"></result>
+        <association property="employee" javaType="employee" resultMap="com.iotek.humanresources.dao.EmployeeMapper.employeeMap"></association>
+
+    </resultMap>
+
+</mapper>

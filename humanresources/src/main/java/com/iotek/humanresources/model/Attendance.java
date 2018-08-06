@@ -12,7 +12,8 @@ public class Attendance implements Serializable {
     private Date date;
     private Date punchin;
     private Date punchout;
-    private int state;
+    private int state;//0代表正常，1代表迟到，2代表早退，3代表迟到加早退，4代表旷工，5代表正常和加班，6代表迟到和加班，7代表早退和加班，8代表迟到早退和加班，9代表旷工和加班
+    private Date overtime;
 
     public Attendance() {
     }
@@ -65,6 +66,14 @@ public class Attendance implements Serializable {
         this.state = state;
     }
 
+    public Date getOvertime() {
+        return overtime;
+    }
+
+    public void setOvertime(Date overtime) {
+        this.overtime = overtime;
+    }
+
     @Override
     public String toString() {
         return "Attendance{" +
@@ -74,6 +83,7 @@ public class Attendance implements Serializable {
                 ", punchin=" + punchin +
                 ", punchout=" + punchout +
                 ", state=" + state +
+                ", overtime=" + overtime +
                 '}';
     }
 }

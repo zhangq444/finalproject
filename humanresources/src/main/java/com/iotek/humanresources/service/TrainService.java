@@ -23,4 +23,6 @@ public interface TrainService {
 
     void modifyTrainWithdrawTrain(Train train);
 
+    List<Train> getTrainByEmpIdState(int id, int state);
+
 }

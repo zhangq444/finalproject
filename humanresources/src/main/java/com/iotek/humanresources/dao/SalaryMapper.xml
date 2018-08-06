@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.humanresources.dao.SalaryMapper">
+    <insert id="addNewSalary">
+        INSERT INTO T_SALARY(S_ID, S_EMPID, S_BASESALARY, S_PERFORMANCE, S_OVERTIME, S_REWARDS, S_SOCIAL, S_REALSALARY, S_STATE,S_TIME)
+        VALUES (T_SALARY_SEQ.nextval,#{employee.id},#{basesalary},#{performance},#{overtime},#{rewards},#{social},#{realsalary},#{state},#{time})
+    </insert>
+
+    <update id="modifySalaryStateById">
+        UPDATE T_SALARY SET S_STATE=#{state} where S_ID=#{id}
+    </update>
+
+    <select id="getAllSalary" resultMap="salaryMap">
+        SELECT * FROM T_SALARY s,T_EMPLOYEE emp
+        WHERE s.S_EMPID=emp.EMP_ID
+    </select>
+
+    <select id="getSalaryByEMPID" resultMap="salaryMap">
+        SELECT * FROM T_SALARY s,T_EMPLOYEE emp
+        WHERE s.S_EMPID=emp.EMP_ID
+        AND s.S_EMPID=#{id}
+    </select>
+
+    <select id="getSalaryByEMPIDByPage" resultMap="salaryMap">
+        SELECT * FROM (
+        SELECT ROWNUM rn,s.*,emp.* FROM T_SALARY s,T_EMPLOYEE emp
+        WHERE s.S_EMPID=emp.EMP_ID
+        AND s.S_EMPID=#{0}
+        ) x
+        where x.rn between #{1} and #{2}
+    </select>
+
+    <select id="getSalaryById" resultMap="salaryMap">
+        SELECT * FROM T_SALARY s,T_EMPLOYEE emp
+        WHERE s.S_EMPID=emp.EMP_ID
+        AND s.S_ID=#{id}
+    </select>
+
+    <select id="getReconsiderSalaryByState" resultMap="salaryMap">
+        SELECT * FROM T_SALARY s,T_EMPLOYEE emp
+        WHERE s.S_EMPID=emp.EMP_ID
+        AND (s.S_STATE=#{0} or s.S_STATE=#{1})
+    </select>
+
+    <select id="getReconsiderSalaryByStateByPage" resultMap="salaryMap">
+        SELECT * FROM (
+        SELECT ROWNUM rn,s.*,emp.* FROM T_SALARY s,T_EMPLOYEE emp
+        WHERE s.S_EMPID=emp.EMP_ID
+        AND (s.S_STATE=#{0} or s.S_STATE=#{1})
+        ) x
+        where x.rn between #{2} and #{3}
+    </select>
+
+    <resultMap id="salaryMap" type="salary">
+        <id property="id" column="S_ID"></id>
+        <result property="basesalary" column="S_BASESALARY"></result>
+        <result property="performance" column="S_PERFORMANCE"></result>
+        <result property="overtime" column="S_OVERTIME"></result>
+        <result property="rewards" column="S_REWARDS"></result>
+        <result property="social" column="S_SOCIAL"></result>
+        <result property="realsalary" column="S_REALSALARY"></result>
+        <result property="state" column="S_STATE"></result>
+        <result property="instruction" column="S_INSTRUCTION"></result>
+        <result property="time" column="S_TIME"></result>
+        <association property="employee" javaType="employee" resultMap="com.iotek.humanresources.dao.EmployeeMapper.employeeMap"></association>
+    </resultMap>
+
+</mapper>
