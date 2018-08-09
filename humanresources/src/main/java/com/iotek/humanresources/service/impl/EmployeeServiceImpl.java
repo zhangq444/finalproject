@@ -7,6 +7,7 @@ import com.iotek.humanresources.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -79,6 +80,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     public List<Employee> getEmployeeByPOSIDAndStateByPage(int selectPosition, int state1, int state2, int start, int end) {
         return employeeMapper.getEmployeeByPOSIDAndStateByPage(selectPosition,state1,state2,start,end);
+    }
+
+    public List<Employee> getEmployeeByPOSIDByPage(int checkEmpPosId, int start, int end) {
+        return employeeMapper.getEmployeeByPOSIDByPage(checkEmpPosId,start,end);
+    }
+
+    public List<Employee> getEmployeeByStateByPage(List<Employee> employeeList, int currentPage, int pageSize) {
+        List<Employee> employeeList1=new ArrayList<Employee>();
+        int max=(currentPage-1)*pageSize+pageSize>employeeList.size()?employeeList.size():(currentPage-1)*pageSize+pageSize;
+        for(int i=(currentPage-1)*pageSize;i<max;i++){
+            employeeList1.add(employeeList.get(i));
+        }
+        return employeeList1;
+    }
+
+    public void modifyEmployeeStateById(Employee employee) {
+        employeeMapper.modifyEmployeeStateById(employee);
     }
 
 }

@@ -17,10 +17,37 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #tr1{
+            background-color: lightblue;
+        }
+        th{
+            width: 200px;
+        }
+        td{
+            width: 200px;
+        }
+        form{
+            margin: 0px;
+            padding: 0px;
+        }
+        a{
+            text-decoration: none;
+        }
+
+    </style>
 </head>
 <body>
 
-    欢迎查看个人奖惩记录<br>
+<jsp:include page="head.jsp"></jsp:include>
+
+<div>
+    <h2>欢迎查看个人奖惩记录</h2>
     <br>
     <form action="checkRewards1">
         请选择查询时间：<input type="date" name="searchDate">(说明：将按照所选日期的年月进行查询)<br>
@@ -33,7 +60,7 @@
     </c:if>
     <c:if test="${fn:length(sessionScope.checkRewardsList)!=0}">
         <table>
-            <tr>
+            <tr id="tr1">
                 <th>奖惩id</th>
                 <th>奖惩金额</th>
                 <th>奖惩时间</th>
@@ -54,7 +81,7 @@
         </c:forEach>
     </c:if>
 
-
+</div>
 
 
 

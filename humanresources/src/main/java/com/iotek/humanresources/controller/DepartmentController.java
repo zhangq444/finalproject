@@ -5,6 +5,7 @@ import com.iotek.humanresources.model.Employee;
 import com.iotek.humanresources.model.Position;
 import com.iotek.humanresources.service.DepartmentService;
 import com.iotek.humanresources.service.EmployeeService;
+import com.iotek.humanresources.service.PositionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +24,8 @@ public class DepartmentController {
     private DepartmentService departmentService;
     @Resource
     private EmployeeService employeeService;
+    @Resource
+    private PositionService positionService;
 
     @RequestMapping("/showDepartment")
     public String showDepartment(HttpSession session){
@@ -39,7 +42,7 @@ public class DepartmentController {
     }
 
     @RequestMapping("/checkPosition")
-    public String checkPosition(int selectDep,String showButton,String modifyButton,String addButton,String deleteButton,HttpSession session ){
+    public String checkPosition(@RequestParam(value = "currentPage",defaultValue = "1") int currentPage,int selectDep,String showButton,String modifyButton,String addButton,String deleteButton,HttpSession session ){
         if(showButton!=null){
             if(selectDep==0){
                 return "showDepartment";
@@ -52,7 +55,14 @@ public class DepartmentController {
                 p.setDepartment(department);
             }
 
-            session.setAttribute("showPositionList",positionList);
+            int totalNum=positionList.size();
+            int pageSize=2;
+            int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+
+            List<Position> positionList1=departmentService.getPositionLisByPage(positionList,currentPage,pageSize);
+
+            session.setAttribute("showPositionList",positionList1);
+            session.setAttribute("showPositionListTotalPages",totalPages);
             session.setAttribute("showSelectDepartment",department);
             session.setAttribute("addPositionError","");//刷新session，将之前增加职位的错误信息清空
             session.setAttribute("deletePositionError","");//刷新session，将之前删除职位的错误信息清空
@@ -78,15 +88,6 @@ public class DepartmentController {
             return "modifyDepartment";
         }
         if(deleteButton!=null){
-
-
-            //还有问题需要解决
-
-
-
-
-
-
             if(selectDep==0){
                 return "showDepartment";
             }
@@ -97,6 +98,8 @@ public class DepartmentController {
                 return "showDepartment";
             }
             departmentService.deleteDepartmentById(temp);
+            positionService.deletePositionByDepId(selectDep);
+
             //更新session
             List<Department> departmentList=departmentService.getAllDepartment();
             session.setAttribute("showDepartmentList",departmentList);
@@ -105,6 +108,24 @@ public class DepartmentController {
 
         return null;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @RequestMapping("/addDepartment")
     public String addDepartment(String departmentName,HttpSession session){

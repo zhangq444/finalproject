@@ -14,6 +14,10 @@
         DELETE FROM T_POSITION WHERE POS_ID=#{id}
     </delete>
 
+    <delete id="deletePositionByDepId">
+        DELETE FROM T_POSITION WHERE POS_DEPID=#{0}
+    </delete>
+
     <select id="getPositionById" resultMap="positionMap">
         SELECT * FROM T_POSITION WHERE POS_ID=#{id}
     </select>

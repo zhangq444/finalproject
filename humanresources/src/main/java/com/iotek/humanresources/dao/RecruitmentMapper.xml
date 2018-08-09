@@ -34,6 +34,19 @@
         AND rm.RM_ID=#{id}
     </select>
 
+    <select id="getAllRecruitmentByPage" resultMap="recruitmentMap">
+        SELECT * FROM (
+        SELECT ROWNUM rn,rm.*,u.*,rs.*,rc.*,dep.*,pos.*
+        from T_RECRUITMENT rm,T_USERS u,T_RESUME rs,T_RECRUIT rc,T_DEPARTMENT dep,T_POSITION pos
+        WHERE rm.RM_UID=u.U_ID
+        AND rm.RM_RSID=rs.RS_ID
+        AND rm.RM_RCID=rc.RC_ID
+        AND rc.RC_DEPID=dep.DEP_ID
+        AND rc.RC_POSID=pos.POS_ID
+        ) x
+        WHERE x.rn BETWEEN #{0} and #{1}
+    </select>
+
     <resultMap id="recruitmentMap" type="recruitment">
         <id property="id" column="RM_ID"></id>
         <result property="read" column="RM_READ"></result>

@@ -14,19 +14,37 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        #div1{
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 100px;
+            padding-top: 100px;
+            background-image: url("/pic/register.jpg");
+            width: 800px;
+            height: 400px;
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body>
 
-register<br>
+<div id="div1">
+    欢迎来到注册页面<br>
+    <br>
+    <form action="register">
+        用户：<input type="text" name="name"><br>
+        密码：<input type="password" name="password"><br>
+        <br>
+        <input type="submit" value="注册">
+        <a href="returnWelcome"><input type="button" value="返回主页"></a>
+    </form>
+    ${sessionScope.registerError}
+</div>
 
-<form action="register">
-    用户:<input type="text" name="name"><br>
-    密码:<input type="password" name="password"><br>
-    <input type="submit" value="提交">
-    <a href="returnWelcome"><input type="button" value="返回主页"></a>
-</form>
 
-${sessionScope.registerError}
+
 
 </body>
 </html>

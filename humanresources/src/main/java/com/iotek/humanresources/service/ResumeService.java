@@ -19,6 +19,6 @@ public interface ResumeService {
 
     void deleteResumeById(Resume resume);
 
-
+    List<Resume> getResumeByUidByPage(int id, int start, int end);
 
 }

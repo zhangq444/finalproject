@@ -17,10 +17,36 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #tr1{
+            background-color: lightblue;
+        }
+        th{
+            width: 200px;
+        }
+        td{
+            width: 200px;
+        }
+        form{
+            margin: 0px;
+            padding: 0px;
+        }
+        a{
+            text-decoration: none;
+        }
+
+    </style>
 </head>
 <body>
+<jsp:include page="head.jsp"></jsp:include>
 
-    查看员工的奖惩记录<br>
+<div>
+    <h2>查看员工的奖惩记录</h2>
     <br>
     <c:if test="${fn:length(checkEmployeeRewardsList)==0}">
         未查询到相关奖惩信息
@@ -28,7 +54,7 @@
 
     <c:if test="${fn:length(checkEmployeeRewardsList)!=0}">
         <table>
-            <tr>
+            <tr id="tr1">
                 <th>奖惩id</th>
                 <th>奖惩金额</th>
                 <th>奖惩生成时间</th>
@@ -71,7 +97,7 @@
         <a href="returnManagerWelcome"><input type="button" value="返回主页"></a>
     </form>
 
-
+</div>
 
 </body>
 </html>

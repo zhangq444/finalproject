@@ -16,4 +16,6 @@ public interface PositionService {
 
     void deletePositionById(Position position);
 
+    void deletePositionByDepId(int selectDep);
+
 }

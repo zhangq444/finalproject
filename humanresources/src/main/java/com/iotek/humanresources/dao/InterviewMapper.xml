@@ -30,6 +30,34 @@
         AND i.I_STATE=#{state}
     </select>
 
+    <select id="getInterviewByUidByPage" resultMap="interviewMap">
+        SELECT * FROM (
+        SELECT ROWNUM rn,i.*,rc.*,rs.*,emp.*,dep.*,pos.*
+        FROM T_INTERVIEW i,T_RECRUIT rc,T_RESUME rs,T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
+        WHERE i.I_RCID=rc.RC_ID
+        AND i.I_RSID=rs.RS_ID
+        AND i.I_EMPID=emp.EMP_ID
+        AND rc.RC_DEPID=dep.DEP_ID
+        AND rc.RC_POSID=pos.POS_ID
+        AND i.I_UID=#{0}
+        ) x
+        where x.rn between #{1} and #{2}
+    </select>
+
+    <select id="getInterviewByStateByPage" resultMap="interviewMap">
+        SELECT * FROM (
+        SELECT ROWNUM rn,i.*,rc.*,rs.*,emp.*,dep.*,pos.*
+        FROM T_INTERVIEW i,T_RECRUIT rc,T_RESUME rs,T_EMPLOYEE emp,T_DEPARTMENT dep,T_POSITION pos
+        WHERE i.I_RCID=rc.RC_ID
+        AND i.I_RSID=rs.RS_ID
+        AND i.I_EMPID=emp.EMP_ID
+        AND rc.RC_DEPID=dep.DEP_ID
+        AND rc.RC_POSID=pos.POS_ID
+        AND i.I_STATE=#{0}
+        ) x
+        where x.rn between #{1} and #{2}
+    </select>
+
     <resultMap id="interviewMap" type="interview">
         <id property="id" column="I_ID"></id>
         <result property="time" column="I_TIME"></result>

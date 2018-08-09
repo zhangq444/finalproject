@@ -49,5 +49,9 @@ public class RecruitServiceImpl implements RecruitService {
         return recruitMapper.getRecruitCurrentPage(state,start,end);
     }
 
+    public List<Recruit> getAllRecruitByPage(int start, int end) {
+        return recruitMapper.getAllRecruitByPage(start,end);
+    }
+
 
 }

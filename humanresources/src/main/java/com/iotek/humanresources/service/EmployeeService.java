@@ -40,4 +40,11 @@ public interface EmployeeService {
     void modifyEmployeeInfoById(Employee employee);
 
     List<Employee> getEmployeeByPOSIDAndStateByPage(int selectPosition, int state1, int state2, int start, int end);
+
+    List<Employee> getEmployeeByPOSIDByPage(int checkEmpPosId, int start, int end);
+
+    List<Employee> getEmployeeByStateByPage(List<Employee> employeeList, int currentPage, int pageSize);
+
+    void modifyEmployeeStateById(Employee employee);
+
 }

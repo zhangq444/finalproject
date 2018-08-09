@@ -1,6 +1,7 @@
 package com.iotek.humanresources.service;
 
 import com.iotek.humanresources.model.Department;
+import com.iotek.humanresources.model.Position;
 
 import java.util.List;
 
@@ -20,5 +21,7 @@ public interface DepartmentService {
     void modifyDepartmentNameById(Department department);
 
     void deleteDepartmentById(Department temp);
+
+    List<Position> getPositionLisByPage(List<Position> positionList, int currentPage, int pageSize);
 
 }

@@ -33,7 +33,7 @@ public class UsersController {
         List<Recruit> recruitList=recruitService.getAllRecruitByState(recruit);
 
         int totalNum=recruitList.size();
-        int pageSize=1;
+        int pageSize=5;
         int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
         int start=(currentPage-1)*pageSize+1;
         int end=pageSize*currentPage;

@@ -48,4 +48,12 @@ public class TrainServiceImpl implements TrainService {
         return trainMapper.getTrainByEmpIdState(id,state);
     }
 
+    public List<Train> getTrainByEmpIdStateByPage(int employeeInfoId, int state, int start, int end) {
+        return trainMapper.getTrainByEmpIdStateByPage(employeeInfoId,state,start,end);
+    }
+
+    public List<Train> getAllTrainByPage(int start, int end) {
+        return trainMapper.getAllTrainByPage(start,end);
+    }
+
 }

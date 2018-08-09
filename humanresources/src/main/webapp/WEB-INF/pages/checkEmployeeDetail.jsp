@@ -30,55 +30,89 @@
             })
         })
     </script>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #tr1{
+            background-color: lightblue;
+        }
+        th{
+            width: 200px;
+        }
+        td{
+            width: 200px;
+        }
+        form{
+            margin: 0px;
+            padding: 0px;
+        }
+        a{
+            text-decoration: none;
+        }
+
+    </style>
 </head>
 <body>
 
-<form action="checkEmployeeDetail1">
-    请选择部门和职位：
-    <select id="selectDep" name="selectDep">
-        <option value="0">请选择</option>
-        <c:forEach var="i" begin="0" end="${fn:length(sessionScope.checkEmployeeDepartmentList)-1}">
-            <option value="${sessionScope.checkEmployeeDepartmentList[i].id}" class="option1">${sessionScope.checkEmployeeDepartmentList[i].name}</option>
-        </c:forEach>
-    </select>
-    <select id="selectPosition" name="selectPosition">
-        <option value="0">请选择</option>
+<jsp:include page="head.jsp"></jsp:include>
 
-    </select>
-    <input type="submit" value="查询">
-</form>
-<br>
-<br>
-${sessionScope.checkEmployeeDetailError}<br>
+<div>
+    <h2>欢迎查询公司通讯录</h2>
+    <br>
+    <form action="checkEmployeeDetail1">
+        请选择部门和职位：
+        <select id="selectDep" name="selectDep">
+            <option value="0">请选择</option>
+            <c:forEach var="i" begin="0" end="${fn:length(sessionScope.checkEmployeeDepartmentList)-1}">
+                <option value="${sessionScope.checkEmployeeDepartmentList[i].id}" class="option1">${sessionScope.checkEmployeeDepartmentList[i].name}</option>
+            </c:forEach>
+        </select>
+        <select id="selectPosition" name="selectPosition">
+            <option value="0">请选择</option>
 
-<c:if test="${fn:length(sessionScope.checkEmployeeDetailList)==0}">
-    未查询到该职位部门下的员工<br>
-    <a href="/returnEmployeeWelcome"><input type="button" value="返回主页"></a>
-</c:if>
+        </select>
+        <input type="submit" value="查询">
+    </form>
+    <br>
+    ${sessionScope.checkEmployeeDetailError}<br>
 
-<c:if test="${fn:length(sessionScope.checkEmployeeDetailList)!=0}">
-    <table>
-        <tr>
-            <th>员工id</th>
-            <th>员工姓名</th>
-            <th>员工性别</th>
-            <th>员工手机</th>
-            <th>员工邮箱</th>
-        </tr>
-        <c:forEach var="i" begin="0" end="${fn:length(sessionScope.checkEmployeeDetailList)-1}">
-            <tr>
-                <td>${sessionScope.checkEmployeeDetailList[i].id}</td>
-                <td>${sessionScope.checkEmployeeDetailList[i].name}</td>
-                <td>${sessionScope.checkEmployeeDetailList[i].gender}</td>
-                <td>${sessionScope.checkEmployeeDetailList[i].phone}</td>
-                <td>${sessionScope.checkEmployeeDetailList[i].email}</td>
+    <c:if test="${fn:length(sessionScope.checkEmployeeDetailList)==0}">
+        未查询到该职位部门下的员工<br>
+        <a href="/returnEmployeeWelcome"><input type="button" value="返回主页"></a>
+    </c:if>
+
+    <c:if test="${fn:length(sessionScope.checkEmployeeDetailList)!=0}">
+        <table>
+            <tr id="tr1">
+                <th>员工id</th>
+                <th>员工姓名</th>
+                <th>员工性别</th>
+                <th>员工手机</th>
+                <th>员工邮箱</th>
             </tr>
+            <c:forEach var="i" begin="0" end="${fn:length(sessionScope.checkEmployeeDetailList)-1}">
+                <tr>
+                    <td>${sessionScope.checkEmployeeDetailList[i].id}</td>
+                    <td>${sessionScope.checkEmployeeDetailList[i].name}</td>
+                    <td>${sessionScope.checkEmployeeDetailList[i].gender}</td>
+                    <td>${sessionScope.checkEmployeeDetailList[i].phone}</td>
+                    <td>${sessionScope.checkEmployeeDetailList[i].email}</td>
+                </tr>
+            </c:forEach>
+        </table><br>
+        <c:forEach var="i" begin="1" end="${sessionScope.checkEmployeeDetailListTotalPages}">
+            <a href="checkEmployeeDetail1?currentPage=${i}&selectDep=${sessionScope.checkEmployeeDetailListSelectDep}
+            &selectPosition=${sessionScope.checkEmployeeDetailListSelectPosition}">&nbsp;${i}&nbsp;</a>
         </c:forEach>
-    </table><br>
-    <a href="/returnEmployeeWelcome"><input type="button" value="返回主页"></a>
+        <br>
+        <a href="/returnEmployeeWelcome"><input type="button" value="返回主页"></a>
 
-</c:if>
+    </c:if>
 
+</div>
 
 </body>
 </html>

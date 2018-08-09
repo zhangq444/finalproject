@@ -30,12 +30,39 @@
             })
         })
     </script>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #tr1{
+            background-color: lightblue;
+        }
+        th{
+            width: 200px;
+        }
+        td{
+            width: 200px;
+        }
+        form{
+            margin: 0px;
+            padding: 0px;
+        }
+        a{
+            text-decoration: none;
+        }
+
+    </style>
 </head>
 <body>
 
-    请选择要查询员工的条件<br>
+<jsp:include page="head.jsp"></jsp:include>
+
+<div>
+    <h2>请选择要查询员工的条件</h2>
     <form action="selectEmployee">
-        部门和职位：
+        部门职位：&nbsp;
         <select id="selectDep" name="selectDep">
             <option value="0">请选择</option>
             <c:forEach var="i" begin="0" end="${fn:length(sessionScope.EmpDepartmentList)-1}">
@@ -47,12 +74,13 @@
 
         </select>
         <br>
-        在职情况：
+        在职情况：&nbsp;
         <select name="selectOnJob">
             <option value="0">请选择</option>
             <option value="1">在职</option>
             <option value="-1">离职</option>
         </select>
+        &nbsp;
         (说明：离职员工不分部门与职位)
         <br>
         <input type="submit" value="根据部门查询" name="onDep">
@@ -60,10 +88,8 @@
         <a href="returnManagerWelcome"><input type="button" value="返回主页"></a>
     </form>
     <br>
-    <br>
-    ${sessionScope.selectEmployeeError}<br>
+    ${sessionScope.selectEmployeeError}${sessionScope.showEmployeeInfoError}${sessionScope.comfirmationEmployeeError}<br>
 
-    <br>
     <br>
 
     <c:if test="${fn:length(sessionScope.showEmployeeList)==0}">
@@ -72,7 +98,7 @@
 
     <c:if test="${fn:length(sessionScope.showEmployeeList)!=0}">
         <table>
-            <tr>
+            <tr id="tr1">
                 <th>员工id</th>
                 <th>员工姓名</th>
                 <th>员工所属部门</th>
@@ -107,8 +133,6 @@
                                 <option value="1">基本信息</option>
                                 <option value="2">薪资</option>
                                 <option value="3">培训</option>
-                                <option value="4">绩效</option>
-                                <option value="5">考勤</option>
                             </select>
                         </td>
                         <td>
@@ -123,8 +147,8 @@
                         </form>
                     </td>
                     <td>
-                        <form>
-                            <input type="hidden" value="${sessionScope.showEmployeeList[i].id}">
+                        <form action="comfirmationEmployee">
+                            <input type="hidden" value="${sessionScope.showEmployeeList[i].id}" name="comfirmEmployeeId">
                             <input type="submit" value="转正">
                         </form>
                     </td>
@@ -138,9 +162,17 @@
 
             </c:forEach>
         </table>
+        <c:forEach var="i" begin="1" end="${sessionScope.showEmployeeListTotalPages}">
+            <a href="selectEmployee?currentPage=${i}&selectDep=${sessionScope.showEmployeeListSelectDep}
+            &selectPosition=${sessionScope.showEmployeeListSelectPosition}&selectOnJob=${sessionScope.showEmployeeListSelectOnJob}
+            &onDep=${sessionScope.showEmployeeListOnDep}&onDepPos=${sessionScope.showEmployeeListOnDepPos}">
+                &nbsp;${i}&nbsp;
+            </a>
+        </c:forEach>
+
     </c:if>
 
-
+</div>
 
 
 

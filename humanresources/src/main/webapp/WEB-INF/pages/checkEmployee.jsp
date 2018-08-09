@@ -16,40 +16,75 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #tr1{
+            background-color: lightblue;
+        }
+        th{
+            width: 200px;
+        }
+        td{
+            width: 200px;
+        }
+        form{
+            margin: 0px;
+            padding: 0px;
+        }
+        a{
+            text-decoration: none;
+        }
+
+    </style>
 </head>
 <body>
 
-<c:if test="${fn:length(sessionScope.checkEmployeeList)==0}">
-    该职位下没有员工<br>
-    <a href="returnManagerWelcome"><input type="button" value="返回主页"></a>
-</c:if>
+<jsp:include page="head.jsp"></jsp:include>
 
-<c:if test="${fn:length(sessionScope.checkEmployeeList)!=0}">
-    <table>
-        <tr>
-            <th>员工id</th>
-            <th>员工姓名</th>
-            <th>员工电话</th>
-            <th>员工email</th>
-            <th>员工身份证号</th>
-            <th>员工所属部门</th>
-            <th>员工所属职位</th>
-        </tr>
-        <c:forEach var="i" begin="0" end="${fn:length(sessionScope.checkEmployeeList)-1}">
-            <tr>
-                <td>${sessionScope.checkEmployeeList[i].id}</td>
-                <td>${sessionScope.checkEmployeeList[i].name}</td>
-                <td>${sessionScope.checkEmployeeList[i].phone}</td>
-                <td>${sessionScope.checkEmployeeList[i].email}</td>
-                <td>${sessionScope.checkEmployeeList[i].idcard}</td>
-                <td>${sessionScope.checkEmployeeList[i].department.name}</td>
-                <td>${sessionScope.checkEmployeeList[i].position.name}</td>
-            </tr>
-        </c:forEach>
-    </table>
+<div>
+    <h2>查看员工</h2>
     <br>
-    <a href="returnManagerWelcome"><input type="button" value="返回主页"></a>
-</c:if>
+    <c:if test="${fn:length(sessionScope.checkEmployeeList)==0}">
+        该职位下没有员工<br>
+        <a href="returnManagerWelcome"><input type="button" value="返回主页"></a>
+    </c:if>
+
+    <c:if test="${fn:length(sessionScope.checkEmployeeList)!=0}">
+        <table>
+            <tr id="tr1">
+                <th>员工id</th>
+                <th>员工姓名</th>
+                <th>员工电话</th>
+                <th>员工email</th>
+                <th>员工身份证号</th>
+                <th>员工所属部门</th>
+                <th>员工所属职位</th>
+            </tr>
+            <c:forEach var="i" begin="0" end="${fn:length(sessionScope.checkEmployeeList)-1}">
+                <tr>
+                    <td>${sessionScope.checkEmployeeList[i].id}</td>
+                    <td>${sessionScope.checkEmployeeList[i].name}</td>
+                    <td>${sessionScope.checkEmployeeList[i].phone}</td>
+                    <td>${sessionScope.checkEmployeeList[i].email}</td>
+                    <td>${sessionScope.checkEmployeeList[i].idcard}</td>
+                    <td>${sessionScope.checkEmployeeList[i].department.name}</td>
+                    <td>${sessionScope.checkEmployeeList[i].position.name}</td>
+                </tr>
+            </c:forEach>
+        </table>
+        <br>
+        <c:forEach var="i" begin="1" end="${sessionScope.checkEmployeeListTotalPages}">
+            <a href="checkEmployee?currentPage=${i}&checkEmpPosId=${sessionScope.checkEmployeeListCheckEmpPosId}">&nbsp;${i}&nbsp;</a>
+        </c:forEach>
+        <br>
+        <a href="returnManagerWelcome"><input type="button" value="返回主页"></a>
+    </c:if>
+
+</div>
 
 </body>
 </html>

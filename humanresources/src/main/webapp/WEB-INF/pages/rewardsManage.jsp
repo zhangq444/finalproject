@@ -30,10 +30,37 @@
             })
         })
     </script>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #tr1{
+            background-color: lightblue;
+        }
+        th{
+            width: 200px;
+        }
+        td{
+            width: 200px;
+        }
+        form{
+            margin: 0px;
+            padding: 0px;
+        }
+        a{
+            text-decoration: none;
+        }
+
+    </style>
 </head>
 <body>
 
-    欢迎来到奖惩管理界面<br>
+<jsp:include page="head.jsp"></jsp:include>
+
+<div>
+    <h2>欢迎来到奖惩管理界面</h2>
     <br>
     请选择要查询员工的条件<br>
     <form action="rewardsManage1">
@@ -61,7 +88,7 @@
 
     <c:if test="${fn:length(sessionScope.rewardsManageEmployeeList)!=0}">
         <table>
-            <tr>
+            <tr id="tr1">
                 <th>员工id</th>
                 <th>员工姓名</th>
                 <th>员工所属部门</th>
@@ -91,7 +118,7 @@
 
     </c:if>
 
-
+</div>
 
 
 

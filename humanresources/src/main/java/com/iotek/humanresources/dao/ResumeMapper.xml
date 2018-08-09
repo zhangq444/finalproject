@@ -25,6 +25,13 @@
         SELECT * from T_RESUME where RS_ID=#{id}
     </select>
 
+    <select id="getResumeByUidByPage" resultMap="resumeMap">
+        SELECT * FROM (
+        SELECT ROWNUM rn,T_RESUME.* from T_RESUME where RS_UID=#{0}
+        ) x
+        where x.rn between #{1} and #{2}
+    </select>
+
     <resultMap id="resumeMap" type="resume">
         <id property="id" column="RS_ID"></id>
         <result property="name" column="RS_NAME"></result>

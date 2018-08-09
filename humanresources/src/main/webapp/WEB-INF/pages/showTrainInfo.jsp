@@ -17,13 +17,43 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #tr1{
+            background-color: lightblue;
+        }
+        #tr2{
+            background-color: lightblue;
+        }
+        th{
+            width: 200px;
+        }
+        td{
+            width: 200px;
+        }
+        form{
+            margin: 0px;
+            padding: 0px;
+        }
+        a{
+            text-decoration: none;
+        }
+
+    </style>
 </head>
 <body>
 
-    显示培训详细信息<br>
+<jsp:include page="head.jsp"></jsp:include>
+
+<div>
+    <h2>显示培训详细信息</h2>
     <br>
     <table>
-        <tr>
+        <tr id="tr1">
             <th>培训id</th>
             <th>培训主题</th>
             <th>培训内容</th>
@@ -53,7 +83,7 @@
     <br>
     针对员工：<br>
     <table>
-        <tr>
+        <tr id="tr2">
             <th>员工id</th>
             <th>员工姓名</th>
             <th>员工所属部门</th>
@@ -80,7 +110,7 @@
         该培训已经发布，无法修改
     </c:if>
 
-
+</div>
 
 
 </body>

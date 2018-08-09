@@ -34,4 +34,8 @@ public class PositionServiceImpl implements PositionService {
     public void deletePositionById(Position position) {
         positionMapper.deletePositionById(position);
     }
+
+    public void deletePositionByDepId(int selectDep) {
+        positionMapper.deletePositionByDepId(selectDep);
+    }
 }

@@ -18,4 +18,6 @@ public interface PositionMapper {
 
     void deletePositionById(Position position);
 
+    void deletePositionByDepId(int selectDep);
+
 }

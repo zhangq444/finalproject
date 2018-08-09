@@ -17,8 +17,110 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #tr1{
+            background-color: lightblue;
+        }
+        th{
+            width: 200px;
+        }
+        td{
+            width: 200px;
+            font-size: 15px;
+        }
+        form{
+            margin: 0px;
+            padding: 0px;
+        }
+        a{
+            text-decoration: none;
+        }
+
+    </style>
 </head>
 <body>
+
+<jsp:include page="head.jsp"></jsp:include>
+
+<div>
+    <h2>查看面试邀请</h2><br>
+    <br>
+    <table>
+        <tr id="tr1">
+            <th>招聘部门</th>
+            <th>招聘岗位</th>
+            <th>面试时间</th>
+            <th>面试地址</th>
+            <th>面试官</th>
+            <th>面试状态</th>
+            <th>参加</th>
+            <th>拒绝</th>
+        </tr>
+        <c:forEach var="i" begin="0" end="${fn:length(sessionScope.checkInterviewList)-1}">
+            <tr>
+                <td>${sessionScope.checkInterviewList[i].recruit.department.name}</td>
+                <td>${sessionScope.checkInterviewList[i].recruit.position.name}</td>
+                <td>${fnn:DateToString1(sessionScope.checkInterviewList[i].time)}</td>
+                <td>${sessionScope.checkInterviewList[i].address}</td>
+                <td>${sessionScope.checkInterviewList[i].employee.name}</td>
+                <td>
+                    <c:if test="${sessionScope.checkInterviewList[i].state==0}">
+                        未选择
+                    </c:if>
+                    <c:if test="${sessionScope.checkInterviewList[i].state==-1}">
+                        已拒绝
+                    </c:if>
+                    <c:if test="${sessionScope.checkInterviewList[i].state==1}">
+                        参加
+                    </c:if>
+                </td>
+                <td>
+                    <c:if test="${sessionScope.checkInterviewList[i].state==0}">
+                        <form action="enterInterview">
+                            <input type="hidden" value="${sessionScope.checkInterviewList[i].id}" name="enterInterviewId">
+                            <input type="submit" value="参加面试">
+                        </form>
+                    </c:if>
+                </td>
+                <td>
+                    <c:if test="${sessionScope.checkInterviewList[i].state==0}">
+                        <form action="refuseInterview">
+                            <input type="hidden" value="${sessionScope.checkInterviewList[i].id}" name="refuseInterviewId">
+                            <input type="submit" value="拒绝面试">
+                        </form>
+                    </c:if>
+                </td>
+            </tr>
+        </c:forEach>
+
+    </table>
+    <a href="returnWelcome"><input type="button" value="返回主页"></a><br>
+    <c:forEach var="i" begin="1" end="${sessionScope.checkInterviewListTotalPages}">
+        <a href="checkInterview?currentPage=${i}">&nbsp;${i}&nbsp;</a>
+    </c:forEach>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%--
+
+
 
     查看面试邀请<br>
     <br>
@@ -73,6 +175,7 @@
     </table>
     <br>
     <a href="returnWelcome"><input type="button" value="返回主页"></a>
+--%>
 
 
 </body>

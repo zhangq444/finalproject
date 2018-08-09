@@ -14,18 +14,51 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        td{
+            width: 200px;
+        }
+        form{
+            margin: 0px;
+            padding: 0px;
+        }
+        a{
+            text-decoration: none;
+        }
+
+    </style>
 </head>
 <body>
+<jsp:include page="head.jsp"></jsp:include>
 
-录取新员工<br>
-<form action="admitEmployee2">
-    员工登录用户名:<input type="text" name="uname">
-    员工登录密码：<input type="password" name="upassword">
-    <input type="submit" value="提交">
-    <a href="returnManagerWelcome"><input type="button" value="返回主页面"></a>
-</form>
+<div>
 
-${sessionScope.admitEmployeeError}
+    <h2>录取新员工</h2>
+    <br>
+    <form action="admitEmployee2">
+        <table>
+            <tr>
+                <td>员工登录用户名:</td>
+                <td><input type="text" name="uname"></td>
+            </tr>
+            <tr>
+                <td>员工登录密码：</td>
+                <td><input type="password" name="upassword"></td>
+            </tr>
+        </table>
+        <br>
+        <input type="submit" value="提交">
+        <a href="returnManagerWelcome"><input type="button" value="返回主页面"></a>
+    </form>
+
+    ${sessionScope.admitEmployeeError}
+
+</div>
 
 </body>
 </html>

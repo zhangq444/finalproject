@@ -27,4 +27,6 @@ public interface RecruitMapper {
 
     List<Recruit> getRecruitCurrentPage(int state, int start, int end);
 
+    List<Recruit> getAllRecruitByPage(int start, int end);
+
 }

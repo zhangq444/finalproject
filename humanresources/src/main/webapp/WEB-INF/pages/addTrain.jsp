@@ -16,10 +16,37 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #tr1{
+            background-color: lightblue;
+        }
+        th{
+            width: 200px;
+        }
+        td{
+            width: 200px;
+        }
+        form{
+            margin: 0px;
+            padding: 0px;
+        }
+        a{
+            text-decoration: none;
+        }
+
+    </style>
 </head>
 <body>
 
-    添加新培训页面<br>
+<jsp:include page="head.jsp"></jsp:include>
+
+<div>
+    <h2>添加新培训页面</h2>
     <br>
         ${sessionScope.addTrainError}
     <br>
@@ -45,7 +72,7 @@
         <input type="submit" value="按时间提交" name="button2"><br>
     </form>
 
-
+</div>
 
 
 </body>

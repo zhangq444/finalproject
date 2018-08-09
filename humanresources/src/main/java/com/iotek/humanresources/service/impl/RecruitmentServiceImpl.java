@@ -35,4 +35,8 @@ public class RecruitmentServiceImpl implements RecruitmentService {
     public void modifyRecruitmentInviteById(Recruitment recruitment) {
         recruitmentMapper.modifyRecruitmentInviteById(recruitment);
     }
+
+    public List<Recruitment> getAllRecruitmentByPage(int start, int end) {
+        return recruitmentMapper.getAllRecruitmentByPage(start,end);
+    }
 }

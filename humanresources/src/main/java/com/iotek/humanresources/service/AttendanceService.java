@@ -20,5 +20,4 @@ public interface AttendanceService {
     void modifyAttendanceOvertimeStateById(Attendance attendance);
 
     List<Attendance> getAttendanceByEmpIDByPage(int id, int start, int end);
-
 }

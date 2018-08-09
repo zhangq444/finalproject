@@ -20,4 +20,6 @@ public interface RecruitmentMapper {
 
     void modifyRecruitmentInviteById(Recruitment recruitment);
 
+    List<Recruitment> getAllRecruitmentByPage(int start, int end);
+
 }

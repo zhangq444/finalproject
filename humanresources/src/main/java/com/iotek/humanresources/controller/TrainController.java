@@ -10,6 +10,7 @@ import com.iotek.humanresources.service.EmployeeService;
 import com.iotek.humanresources.service.TrainService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -32,10 +33,19 @@ public class TrainController {
     private EmpToTrService empToTrService;
 
     @RequestMapping("/trainManage")
-    public String trainManage(HttpSession session){
+    public String trainManage(@RequestParam(value = "currentPage",defaultValue = "1") int currentPage, HttpSession session){
         List<Train> trainList=trainService.getAllTrain();
 
-        session.setAttribute("trainList",trainList);
+        int totalNum=trainList.size();
+        int pageSize=2;
+        int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+        int start=(currentPage-1)*pageSize+1;
+        int end=pageSize*currentPage;
+
+        List<Train> trainList1=trainService.getAllTrainByPage(start,end);
+
+        session.setAttribute("trainList",trainList1);
+        session.setAttribute("trainListTotalPages",totalPages);
         session.setAttribute("withdrawTrainError","");//将错误信息清空
         return "trainManage";
     }
@@ -159,7 +169,7 @@ public class TrainController {
     }
 
     @RequestMapping("/releaseTrain")
-    public String releaseTrain(int releaseTrainId,HttpSession session){
+    public String releaseTrain(@RequestParam(value = "currentPage",defaultValue = "1") int currentPage,int releaseTrainId,HttpSession session){
         Train temp=new Train(releaseTrainId);
         Train train=trainService.getTrainById(temp);
         int state=1;//代表培训发布
@@ -169,13 +179,23 @@ public class TrainController {
         //更新session
         List<Train> trainList=trainService.getAllTrain();
 
-        session.setAttribute("trainList",trainList);
+        int totalNum=trainList.size();
+        int pageSize=2;
+        int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+        int start=(currentPage-1)*pageSize+1;
+        int end=pageSize*currentPage;
+
+        List<Train> trainList1=trainService.getAllTrainByPage(start,end);
+
+        session.setAttribute("trainList",trainList1);
+        session.setAttribute("trainListTotalPages",totalPages);
+
         return "trainManage";
 
     }
 
     @RequestMapping("/withdrawTrain")
-    public String withdrawTrain(int withdrawTrainId,HttpSession session){
+    public String withdrawTrain(@RequestParam(value = "currentPage",defaultValue = "1") int currentPage,int withdrawTrainId,HttpSession session){
         Train temp=new Train(withdrawTrainId);
         Train train=trainService.getTrainById(temp);
         Date releasetime=train.getReleasetime();
@@ -193,18 +213,37 @@ public class TrainController {
         //更新session
         List<Train> trainList=trainService.getAllTrain();
 
-        session.setAttribute("trainList",trainList);
+        int totalNum=trainList.size();
+        int pageSize=2;
+        int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+        int start=(currentPage-1)*pageSize+1;
+        int end=pageSize*currentPage;
+
+        List<Train> trainList1=trainService.getAllTrainByPage(start,end);
+
+        session.setAttribute("trainList",trainList1);
+        session.setAttribute("trainListTotalPages",totalPages);
         session.setAttribute("withdrawTrainError","");
         return "trainManage";
     }
 
     @RequestMapping("/checkTrain")
-    public String checkTrain(HttpSession session){
+    public String checkTrain(@RequestParam(value = "currentPage",defaultValue = "1") int currentPage,HttpSession session){
         Employee employee= (Employee) session.getAttribute("loginEmployee");
         int state=1;//代表发布的培训
         List<Train> trainList=trainService.getTrainByEmpIdState(employee.getId(),state);
 
-        session.setAttribute("checkTrainList",trainList);
+        int totalNum=trainList.size();
+        int pageSize=2;
+        int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+        int start=(currentPage-1)*pageSize+1;
+        int end=pageSize*currentPage;
+
+        List<Train> trainList1=trainService.getTrainByEmpIdStateByPage(employee.getId(),state,start,end);
+
+        session.setAttribute("checkTrainList",trainList1);
+        session.setAttribute("checkTrainListTotalPages",totalPages);
+
         return "checkTrain";
     }
 

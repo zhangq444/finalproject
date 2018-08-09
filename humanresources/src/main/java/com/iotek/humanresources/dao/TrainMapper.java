@@ -26,4 +26,8 @@ public interface TrainMapper {
 
     List<Train> getTrainByEmpIdState(int id, int state);
 
+    List<Train> getTrainByEmpIdStateByPage(int employeeInfoId, int state, int start, int end);
+
+    List<Train> getAllTrainByPage(int start, int end);
+
 }

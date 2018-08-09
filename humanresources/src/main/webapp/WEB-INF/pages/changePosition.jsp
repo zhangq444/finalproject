@@ -39,10 +39,38 @@
             })
         })
     </script>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #tr1{
+            background-color: lightblue;
+        }
+        th{
+            width: 200px;
+        }
+        td{
+            width: 200px;
+        }
+        form{
+            margin: 0px;
+            padding: 0px;
+        }
+        a{
+            text-decoration: none;
+        }
+
+    </style>
 </head>
 <body>
 
-    请选择需要更换的岗位：<br>
+<jsp:include page="head.jsp"></jsp:include>
+
+<div>
+    <h2>请选择需要更换的岗位</h2>
+    <br>
     <form action="changePosition1">
         请选择部门和职位：
         <select id="selectDep" name="selectDep">
@@ -56,11 +84,14 @@
 
         </select>
         <br>
+        <br>
         <input type="submit" value="提交">
 
     </form>
     <br>
     ${sessionScope.changePositionError}<br>
+
+</div>
 
 <%--    <table id="test">
 

@@ -16,82 +16,116 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #tr1{
+            background-color: lightblue;
+        }
+        th{
+            width: 200px;
+        }
+        td{
+            width: 200px;
+        }
+        form{
+            margin: 0px;
+            padding: 0px;
+        }
+        a{
+            text-decoration: none;
+        }
+
+    </style>
+
+
 </head>
 <body>
 
-<form action="checkPosition">
-    请选择部门和职位：
-    <select id="selectDep" name="selectDep">
-        <option value="0">请选择</option>
-        <c:forEach var="i" begin="0" end="${fn:length(sessionScope.showDepartmentList)-1}">
-            <option value="${sessionScope.showDepartmentList[i].id}" class="option1">${sessionScope.showDepartmentList[i].name}</option>
-        </c:forEach>
-    </select>
-    <input type="submit" value="查看部门" name="showButton">&nbsp;<input type="submit" value="修改部门" name="modifyButton">
-    &nbsp;<input type="submit" value="增加部门" name="addButton">&nbsp;<input type="submit" value="删除部门" name="deleteButton">
-    &nbsp;<a href="returnManagerWelcome"><input type="button" value="返回主页面"></a>
-</form>
-<br>
-<br>
+<jsp:include page="head.jsp"></jsp:include>
 
-${sessionScope.deleteDepartmentError}<br>
-${sessionScope.addPositionError}<br>
-${sessionScope.deletePositionError}<br>
-
-<c:if test="${fn:length(sessionScope.showPositionList)==0}">
-    该部门下没有职位<br>
-    <form action="addNewPosition">
-        <input type="hidden" value="${sessionScope.showSelectDepartment.id}" name="addPosDepId">
-        <input type="submit" value="增加职位">
-    </form>
-</c:if>
-
-<c:if test="${fn:length(sessionScope.showPositionList)!=0}">
-    <table>
-        <tr>
-            <th>职位id</th>
-            <th>职位名称</th>
-            <th>职位薪资</th>
-            <th>所属部门</th>
-            <th>查看员工</th>
-            <th>修改职位信息</th>
-            <th>删除职位</th>
-        </tr>
-        <c:forEach var="i" begin="0" end="${fn:length(sessionScope.showPositionList)-1}">
-            <tr>
-                <td>${sessionScope.showPositionList[i].id}</td>
-                <td>${sessionScope.showPositionList[i].name}</td>
-                <td>${sessionScope.showPositionList[i].salary}</td>
-                <td>${sessionScope.showPositionList[i].department.name}</td>
-                <td>
-                    <form action="checkEmployee">
-                        <input type="hidden" value="${sessionScope.showPositionList[i].id}" name="checkEmpPosId">
-                        <input type="submit" value="查看员工">
-                    </form>
-                </td>
-                <td>
-                    <form action="modifyPosition">
-                        <input type="hidden" value="${sessionScope.showPositionList[i].id}" name="modifyPositionInfoId">
-                        <input type="submit" value="修改职位信息">
-                    </form>
-                </td>
-                <td>
-                    <form action="deletePosition">
-                        <input type="hidden" value="${sessionScope.showPositionList[i].id}" name="deletePositionId">
-                        <input type="submit" value="删除职位">
-                    </form>
-                </td>
-            </tr>
-        </c:forEach>
-    </table><br>
+<div>
+    <h2>欢迎来到部门和职位管理页面</h2>
     <br>
-    <form action="addNewPosition">
-        <input type="hidden" value="${sessionScope.showSelectDepartment.id}" name="addPosDepId">
-        <input type="submit" value="增加职位">
+
+    <form action="checkPosition">
+        请选择部门和职位：
+        <select id="selectDep" name="selectDep">
+            <option value="0">请选择</option>
+            <c:forEach var="i" begin="0" end="${fn:length(sessionScope.showDepartmentList)-1}">
+                <option value="${sessionScope.showDepartmentList[i].id}" class="option1">${sessionScope.showDepartmentList[i].name}</option>
+            </c:forEach>
+        </select>
+        <input type="submit" value="查看部门" name="showButton">&nbsp;<input type="submit" value="修改部门" name="modifyButton">
+        &nbsp;<input type="submit" value="增加部门" name="addButton">&nbsp;<input type="submit" value="删除部门" name="deleteButton">
+        &nbsp;<a href="returnManagerWelcome"><input type="button" value="返回主页面"></a>
     </form>
-</c:if>
+    <br>
 
+    ${sessionScope.deleteDepartmentError}<br>
+    ${sessionScope.addPositionError}<br>
+    ${sessionScope.deletePositionError}<br>
 
+    <c:if test="${fn:length(sessionScope.showPositionList)==0}">
+        该部门下没有职位<br>
+        <form action="addNewPosition">
+            <input type="hidden" value="${sessionScope.showSelectDepartment.id}" name="addPosDepId">
+            <input type="submit" value="增加职位">
+        </form>
+    </c:if>
+
+    <c:if test="${fn:length(sessionScope.showPositionList)!=0}">
+        <table>
+            <tr id="tr1">
+                <th>职位id</th>
+                <th>职位名称</th>
+                <th>职位薪资</th>
+                <th>所属部门</th>
+                <th>查看员工</th>
+                <th>修改职位信息</th>
+                <th>删除职位</th>
+            </tr>
+            <c:forEach var="i" begin="0" end="${fn:length(sessionScope.showPositionList)-1}">
+                <tr>
+                    <td>${sessionScope.showPositionList[i].id}</td>
+                    <td>${sessionScope.showPositionList[i].name}</td>
+                    <td>${sessionScope.showPositionList[i].salary}</td>
+                    <td>${sessionScope.showPositionList[i].department.name}</td>
+                    <td>
+                        <form action="checkEmployee">
+                            <input type="hidden" value="${sessionScope.showPositionList[i].id}" name="checkEmpPosId">
+                            <input type="submit" value="查看员工">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="modifyPosition">
+                            <input type="hidden" value="${sessionScope.showPositionList[i].id}" name="modifyPositionInfoId">
+                            <input type="submit" value="修改职位信息">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="deletePosition">
+                            <input type="hidden" value="${sessionScope.showPositionList[i].id}" name="deletePositionId">
+                            <input type="submit" value="删除职位">
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table><br>
+        <c:forEach var="i" begin="1" end="${sessionScope.showPositionListTotalPages}">
+            <a href="checkPosition?currentPage=${i}&selectDep=${sessionScope.showSelectDepartment.id}&showButton='1'">&nbsp;${i}&nbsp;</a>
+        </c:forEach>
+        <br>
+        <form action="addNewPosition">
+            <input type="hidden" value="${sessionScope.showSelectDepartment.id}" name="addPosDepId">
+            <input type="submit" value="增加职位">
+        </form>
+    </c:if>
+
+</div>
 
 
 </body>

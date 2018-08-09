@@ -30,67 +30,95 @@
             })
         })
     </script>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #tr1{
+            background-color: lightblue;
+        }
+        th{
+            width: 200px;
+        }
+        td{
+            width: 200px;
+        }
+        form{
+            margin: 0px;
+            padding: 0px;
+        }
+        a{
+            text-decoration: none;
+        }
+
+    </style>
 </head>
 <body>
 
-请选择要查询员工的条件<br>
-<form action="checkEmployeeAttendance1">
-    部门和职位：
-    <select id="selectDep" name="selectDep">
-        <option value="0">请选择</option>
-        <c:forEach var="i" begin="0" end="${fn:length(sessionScope.EmpDepartmentList)-1}">
-            <option value="${sessionScope.EmpDepartmentList[i].id}" class="option1">${sessionScope.EmpDepartmentList[i].name}</option>
-        </c:forEach>
-    </select>
-    <select id="selectPosition" name="selectPosition">
-        <option value="0">请选择</option>
+<jsp:include page="head.jsp"></jsp:include>
 
-    </select>
+<div>
+    <h2>请选择要查询员工的条件</h2>
     <br>
-    <input type="submit" value="查询员工">
-    <a href="returnManagerWelcome"><input type="button" value="返回主页"></a>
-</form>
-<br>
-<br>
-${sessionScope.checkEmployeeAttendanceError}<br>
-<br>
-<c:if test="${fn:length(sessionScope.checkEmployeeAttendanceList)==0}">
-    未查询到相关员工
-</c:if>
+    <form action="checkEmployeeAttendance1">
+        部门和职位：
+        <select id="selectDep" name="selectDep">
+            <option value="0">请选择</option>
+            <c:forEach var="i" begin="0" end="${fn:length(sessionScope.EmpDepartmentList)-1}">
+                <option value="${sessionScope.EmpDepartmentList[i].id}" class="option1">${sessionScope.EmpDepartmentList[i].name}</option>
+            </c:forEach>
+        </select>
+        <select id="selectPosition" name="selectPosition">
+            <option value="0">请选择</option>
 
-<c:if test="${fn:length(sessionScope.checkEmployeeAttendanceList)!=0}">
-    <table>
-        <tr>
-            <th>员工id</th>
-            <th>员工姓名</th>
-            <th>员工所属部门</th>
-            <th>员工所属职位</th>
-            <th>查看考勤</th>
-        </tr>
-        <c:forEach var="i" begin="0" end="${fn:length(sessionScope.checkEmployeeAttendanceList)-1}">
-            <tr>
-                <td>${sessionScope.checkEmployeeAttendanceList[i].id}</td>
-                <td>${sessionScope.checkEmployeeAttendanceList[i].name}</td>
-                <td>${sessionScope.checkEmployeeAttendanceList[i].department.name}</td>
-                <td>${sessionScope.checkEmployeeAttendanceList[i].position.name}</td>
-                <td>
-                    <form action="checkEmployeeAttendanceInfo">
-                        <input type="hidden" value="${sessionScope.checkEmployeeAttendanceList[i].id}" name="checkEmployeeAttendanceId">
-                        <input type="submit" value="查看员工考勤">
-                    </form>
-                </td>
+        </select>
+        <br>
+        <input type="submit" value="查询员工">
+        <a href="returnManagerWelcome"><input type="button" value="返回主页"></a>
+    </form>
+    <br>
+    ${sessionScope.checkEmployeeAttendanceError}<br>
+    <br>
+    <c:if test="${fn:length(sessionScope.checkEmployeeAttendanceList)==0}">
+        未查询到相关员工
+    </c:if>
+
+    <c:if test="${fn:length(sessionScope.checkEmployeeAttendanceList)!=0}">
+        <table>
+            <tr id="tr1">
+                <th>员工id</th>
+                <th>员工姓名</th>
+                <th>员工所属部门</th>
+                <th>员工所属职位</th>
+                <th>查看考勤</th>
             </tr>
+            <c:forEach var="i" begin="0" end="${fn:length(sessionScope.checkEmployeeAttendanceList)-1}">
+                <tr>
+                    <td>${sessionScope.checkEmployeeAttendanceList[i].id}</td>
+                    <td>${sessionScope.checkEmployeeAttendanceList[i].name}</td>
+                    <td>${sessionScope.checkEmployeeAttendanceList[i].department.name}</td>
+                    <td>${sessionScope.checkEmployeeAttendanceList[i].position.name}</td>
+                    <td>
+                        <form action="checkEmployeeAttendanceInfo">
+                            <input type="hidden" value="${sessionScope.checkEmployeeAttendanceList[i].id}" name="checkEmployeeAttendanceId">
+                            <input type="submit" value="查看员工考勤">
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+
+        </table>
+        <br>
+        <c:forEach var="i" begin="1" end="${sessionScope.checkEmployeeAttendanceTotalPages}">
+            <a href="checkEmployeeAttendance1?currentPage=${i}&selectDep=${sessionScope.checkEmployeeAttendanceList[0].department.id}&selectPosition=${sessionScope.checkEmployeeAttendanceList[0].position.id}">&nbsp;${i}&nbsp;</a>
         </c:forEach>
 
-    </table>
-    <br>
-    <c:forEach var="i" begin="1" end="${sessionScope.checkEmployeeAttendanceTotalPages}">
-        <a href="checkEmployeeAttendance1?currentPage=${i}&selectDep=${sessionScope.checkEmployeeAttendanceList[0].department.id}&selectPosition=${sessionScope.checkEmployeeAttendanceList[0].position.id}">&nbsp;${i}&nbsp;</a>
-    </c:forEach>
-
-</c:if>
+    </c:if>
 
 
+</div>
 
 
 

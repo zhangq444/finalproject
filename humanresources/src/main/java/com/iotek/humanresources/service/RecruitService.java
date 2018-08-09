@@ -25,4 +25,6 @@ public interface RecruitService {
 
     List<Recruit> getRecruitCurrentPage(int state, int start, int end);
 
+    List<Recruit> getAllRecruitByPage(int start, int end);
+
 }

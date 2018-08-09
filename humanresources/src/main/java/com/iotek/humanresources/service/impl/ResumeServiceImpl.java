@@ -37,6 +37,9 @@ public class ResumeServiceImpl implements ResumeService {
         resumeMapper.deleteResumeById(resume);
     }
 
+    public List<Resume> getResumeByUidByPage(int id, int start, int end) {
+        return resumeMapper.getResumeByUidByPage(id,start,end);
+    }
 
 
 }

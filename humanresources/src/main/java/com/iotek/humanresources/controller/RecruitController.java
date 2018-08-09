@@ -8,6 +8,7 @@ import com.iotek.humanresources.service.RecruitService;
 import com.iotek.humanresources.service.ResumeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -46,13 +47,25 @@ public class RecruitController {
 
         session.setAttribute("recruitInfo",recruit);
         session.setAttribute("resumeList",resumeList);
+        session.setAttribute("sendResumeResult","");//将之前简历投递成功的记录清空
         return "recruitInfo";
     }
 
     @RequestMapping("/recruitManage")
-    public String recruitManage(HttpSession session){
+    public String recruitManage(@RequestParam(value = "currentPage",defaultValue = "1") int currentPage, HttpSession session){
         List<Recruit> recruitList=recruitService.getAllRecruit();
-        session.setAttribute("recruitList",recruitList);
+
+        int totalNum=recruitList.size();
+        int pageSize=5;
+        int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+        int start=(currentPage-1)*pageSize+1;
+        int end=pageSize*currentPage;
+
+        List<Recruit> recruitList1=recruitService.getAllRecruitByPage(start,end);
+
+        session.setAttribute("recruitList",recruitList1);
+        session.setAttribute("recruitListTotalPages",totalPages);
+
         return "recruitManage";
     }
 
@@ -135,7 +148,7 @@ public class RecruitController {
     }
 
     @RequestMapping("/releaseRecruit")
-    public String releaseRecruit(int releaseRecruitId,HttpSession session){
+    public String releaseRecruit(@RequestParam(value = "currentPage",defaultValue = "1") int currentPage,int releaseRecruitId,HttpSession session){
         Recruit temp=new Recruit(releaseRecruitId);
         Recruit recruit=recruitService.getRecruitById(temp);
         int state=1;//代表进行发布
@@ -143,13 +156,23 @@ public class RecruitController {
         recruitService.modifyRecruitStateById(recruit);
         //更新session
         List<Recruit> recruitList=recruitService.getAllRecruit();
-        session.setAttribute("recruitList",recruitList);
+
+        int totalNum=recruitList.size();
+        int pageSize=5;
+        int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+        int start=(currentPage-1)*pageSize+1;
+        int end=pageSize*currentPage;
+
+        List<Recruit> recruitList1=recruitService.getAllRecruitByPage(start,end);
+
+        session.setAttribute("recruitList",recruitList1);
+        session.setAttribute("recruitListTotalPages",totalPages);
 
         return "recruitManage";
     }
 
     @RequestMapping("/unreleaseRecruit")
-    public String unreleaseRecruit(int unreleaseRecruitId,HttpSession session){
+    public String unreleaseRecruit(@RequestParam(value = "currentPage",defaultValue = "1") int currentPage,int unreleaseRecruitId,HttpSession session){
         Recruit temp=new Recruit(unreleaseRecruitId);
         Recruit recruit=recruitService.getRecruitById(temp);
         int state=0;//代表取消发布
@@ -157,20 +180,40 @@ public class RecruitController {
         recruitService.modifyRecruitStateById(recruit);
         //更新session
         List<Recruit> recruitList=recruitService.getAllRecruit();
-        session.setAttribute("recruitList",recruitList);
+
+        int totalNum=recruitList.size();
+        int pageSize=5;
+        int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+        int start=(currentPage-1)*pageSize+1;
+        int end=pageSize*currentPage;
+
+        List<Recruit> recruitList1=recruitService.getAllRecruitByPage(start,end);
+
+        session.setAttribute("recruitList",recruitList1);
+        session.setAttribute("recruitListTotalPages",totalPages);
 
         return "recruitManage";
     }
 
     @RequestMapping("/deleteRecruit")
-    public String deleteRecruit(int deleteRecruitId,HttpSession session){
+    public String deleteRecruit(@RequestParam(value = "currentPage",defaultValue = "1") int currentPage,int deleteRecruitId,HttpSession session){
         Recruit temp=new Recruit(deleteRecruitId);
         Recruit recruit=recruitService.getRecruitById(temp);
 
         recruitService.deleteRecruitById(recruit);
         //更新session
         List<Recruit> recruitList=recruitService.getAllRecruit();
-        session.setAttribute("recruitList",recruitList);
+
+        int totalNum=recruitList.size();
+        int pageSize=5;
+        int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+        int start=(currentPage-1)*pageSize+1;
+        int end=pageSize*currentPage;
+
+        List<Recruit> recruitList1=recruitService.getAllRecruitByPage(start,end);
+
+        session.setAttribute("recruitList",recruitList1);
+        session.setAttribute("recruitListTotalPages",totalPages);
 
         return "recruitManage";
     }

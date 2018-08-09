@@ -50,7 +50,16 @@
         AND rc.RC_STATE=#{0}
         ) x
         where x.rn between #{1} and #{2}
+    </select>
 
+    <select id="getAllRecruitByPage" resultMap="recruitMap">
+        SELECT * FROM (
+        SELECT ROWNUM rn,rc.*,dep.*,pos.*
+        FROM T_RECRUIT rc,T_DEPARTMENT dep,T_POSITION pos
+        where rc.RC_DEPID=dep.DEP_ID
+        AND rc.RC_POSID=pos.POS_ID
+        ) x
+        WHERE x.rn BETWEEN #{0} and #{1}
     </select>
 
     <resultMap id="recruitMap" type="recruit">

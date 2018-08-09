@@ -17,11 +17,40 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #tr1{
+            background-color: lightblue;
+        }
+        th{
+            width: 200px;
+        }
+        td{
+            width: 200px;
+        }
+        form{
+            margin: 0px;
+            padding: 0px;
+        }
+        a{
+            text-decoration: none;
+        }
+
+    </style>
 </head>
 <body>
 
+<jsp:include page="head.jsp"></jsp:include>
+
+<div>
+    <h2>招聘信息列表</h2>
+    <br>
     <table>
-        <tr>
+        <tr id="tr1">
             <th>招聘信息id</th>
             <th>招聘部门</th>
             <th>招聘职位</th>
@@ -80,12 +109,16 @@
         </c:forEach>
     </table>
     <br>
+    <c:forEach var="i" begin="1" end="${sessionScope.recruitListTotalPages}">
+        <a href="recruitManage?currentPage=${i}">&nbsp;${i}&nbsp;</a>
+    </c:forEach>
+    <br>
     <form action="addRecruit">
         <input type="submit" value="添加招聘信息">
         <a href="returnManagerWelcome"><input type="button" value="返回主页面"></a>
     </form>
 
-
+</div>
 
 </body>
 </html>

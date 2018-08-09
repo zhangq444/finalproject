@@ -17,16 +17,43 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #tr1{
+            background-color: lightblue;
+        }
+        th{
+            width: 200px;
+        }
+        td{
+            width: 200px;
+        }
+        form{
+            margin: 0px;
+            padding: 0px;
+        }
+        a{
+            text-decoration: none;
+        }
+
+    </style>
 </head>
 <body>
 
+<jsp:include page="head.jsp"></jsp:include>
+
+<div>
     <c:if test="${fn:length(sessionScope.showCheckEmployeeAttendanceList)==0}">
         没有查到相关考勤记录
     </c:if>
 
     <c:if test="${fn:length(sessionScope.showCheckEmployeeAttendanceList)!=0}">
         <table>
-            <tr>
+            <tr id="tr1">
                 <th>考勤id</th>
                 <th>员工姓名</th>
                 <th>考勤日期</th>
@@ -85,6 +112,9 @@
     </c:if>
     <br>
     <a href="returnManagerWelcome"><input type="button" value="返回主页"></a>
+
+</div>
+
 
 </body>
 </html>

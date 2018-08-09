@@ -62,7 +62,7 @@ public class AttendanceController {
             return "clockin";
         }
 
-        int state=3;
+        int state=4;
         /*if(nowCalendar.get(Calendar.HOUR_OF_DAY)<9){
             state=3;
         }else if(nowCalendar.get(Calendar.HOUR_OF_DAY)>=9&&nowCalendar.get(Calendar.HOUR_OF_DAY)<12){
@@ -234,11 +234,20 @@ public class AttendanceController {
     }
 
     @RequestMapping("/checkAttendance")
-    public String checkAttendance(HttpSession session){
+    public String checkAttendance(@RequestParam(value = "currentPage",defaultValue = "1") int currentPage,HttpSession session){
         Employee employee= (Employee) session.getAttribute("loginEmployee");
         List<Attendance> attendanceList=attendanceService.getAttendanceByEMPID(employee);
 
-        session.setAttribute("showPersonAttendanceList",attendanceList);
+        int totalNum=attendanceList.size();
+        int pageSize=1;
+        int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+        int start=(currentPage-1)*pageSize+1;
+        int end=pageSize*currentPage;
+
+        List<Attendance> attendanceList1=attendanceService.getAttendanceByEmpIDByPage(employee.getId(),start,end);
+
+        session.setAttribute("showPersonAttendanceList",attendanceList1);
+        session.setAttribute("showPersonAttendanceListTotalPages",totalPages);
         return "checkAttendance";
     }
 

@@ -17,4 +17,7 @@ public interface InterviewService {
 
     List<Interview> getInterviewByState(Interview interview);
 
+    List<Interview> getInterviewByUidByPage(int id, int start, int end);
+
+    List<Interview> getInterviewByStateByPage(int state, int start, int end);
 }

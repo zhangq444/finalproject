@@ -10,6 +10,7 @@ import com.iotek.humanresources.service.RecruitmentService;
 import com.iotek.humanresources.service.UsersService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -52,7 +53,7 @@ public class InterviewController {
         interview.setTime(UtilController.StringToDate1(interviewTime));
         interview.setAddress(interviewAddress);
         interview.setEmployee(employee);
-        interview.setState(0);//代表面试邀请刚刚发送，用户还没有表示参加或拒绝面试
+        interview.setState(0);//代表面试邀请刚刚发送，用户还没有表示参加或拒绝面试,
         interview.setUsers(recruitment.getUsers());
 
         //interviewService.addNewInterview(interview);
@@ -74,14 +75,25 @@ public class InterviewController {
     }
 
     @RequestMapping("/checkInterview")
-    public String checkInterview(HttpSession session){
+    public String checkInterview(@RequestParam(value = "currentPage",defaultValue = "1") int currentPage, HttpSession session){
         Users loginUser= (Users) session.getAttribute("loginUser");
         if(loginUser==null){
+            session.setAttribute("interviewError","请先登录再进行面试管理");
             return "welcome";
         }
         List<Interview> interviewList=interviewService.getInterviewByUid(loginUser);
 
-        session.setAttribute("checkInterviewList",interviewList);
+        int totalNum=interviewList.size();
+        int pageSize=2;
+        int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+        int start=(currentPage-1)*pageSize+1;
+        int end=pageSize*currentPage;
+
+        List<Interview> interviewList1=interviewService.getInterviewByUidByPage(loginUser.getId(),start,end);
+
+        session.setAttribute("checkInterviewList",interviewList1);
+        session.setAttribute("checkInterviewListTotalPages",totalPages);
+
         return "checkInterview";
 
     }
